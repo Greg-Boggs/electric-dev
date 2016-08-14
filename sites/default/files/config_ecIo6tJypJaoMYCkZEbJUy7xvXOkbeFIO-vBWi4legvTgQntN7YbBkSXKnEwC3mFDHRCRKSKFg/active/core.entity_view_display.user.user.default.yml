@@ -1,28 +1,23 @@
-uuid: 1f398651-b7ee-403e-9918-4668a87f7380
+uuid: ac8ccb32-6bc9-45c4-8303-3b3cf0f2a49d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - field.field.user.user.field_accounts
   module:
-    - image
     - user
-_core:
-  default_config_hash: L2mtwGWH_7wDRCMIR4r_Iu_jmvQ10DV1L8ht8iNZ5qY
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
+  field_accounts:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   member_for:
     weight: 5
-  user_picture:
-    type: image
-    weight: 0
-    settings:
-      image_style: thumbnail
-      image_link: content
-    third_party_settings: {  }
-    label: hidden
 hidden: {  }

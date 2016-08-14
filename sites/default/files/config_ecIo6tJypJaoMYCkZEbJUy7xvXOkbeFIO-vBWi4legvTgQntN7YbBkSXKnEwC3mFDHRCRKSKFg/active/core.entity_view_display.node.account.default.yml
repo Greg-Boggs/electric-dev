@@ -1,0 +1,32 @@
+uuid: c7c17496-c87b-42b4-a720-32529735d869
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.account.field_account_type
+    - field.field.node.account.field_sites
+    - node.type.account
+  module:
+    - user
+id: node.account.default
+targetEntityType: node
+bundle: account
+mode: default
+content:
+  field_account_type:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_sites:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 100
+hidden: {  }

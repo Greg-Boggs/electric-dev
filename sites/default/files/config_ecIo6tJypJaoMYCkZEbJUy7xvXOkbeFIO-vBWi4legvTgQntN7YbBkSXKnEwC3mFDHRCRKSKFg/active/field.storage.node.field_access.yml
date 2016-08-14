@@ -1,19 +1,18 @@
-uuid: 03480f75-c714-44c3-a500-b587f7a5bfbe
+uuid: ccd948a1-7a7b-4736-911a-26233ffba3a9
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - text
-id: node.body
-field_name: body
+id: node.field_access
+field_name: field_access
 entity_type: node
-type: text_with_summary
+type: boolean
 settings: {  }
-module: text
+module: core
 locked: false
 cardinality: 1
 translatable: true
 indexes: {  }
-persist_with_no_fields: true
+persist_with_no_fields: false
 custom_storage: false

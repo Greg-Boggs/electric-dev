@@ -1,17 +1,17 @@
-uuid: 4718f509-ddb3-468e-9856-8637a29be507
+uuid: 7b90b051-b49b-46ac-9c03-3e5a6f98039b
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.page
-id: node.page.promote
+    - node.type.account
+id: node.account.promote
 field_name: promote
 entity_type: node
-bundle: page
+bundle: account
 label: 'Promoted to front page'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 0

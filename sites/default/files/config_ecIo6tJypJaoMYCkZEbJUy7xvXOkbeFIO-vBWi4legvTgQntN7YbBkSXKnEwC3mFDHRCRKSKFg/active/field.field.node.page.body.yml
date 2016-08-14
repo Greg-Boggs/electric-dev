@@ -1,4 +1,4 @@
-uuid: 3b109816-e2c9-4bd0-ab35-2145e1aa6152
+uuid: 8eb902da-0b2e-46b0-bd03-3bc465eccda1
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,6 @@ dependencies:
     - node.type.page
   module:
     - text
-_core:
-  default_config_hash: rUop-8b6hvxxDYbv-KobTfNIBNbPY9qOPl8f6kBNSpw
 id: node.page.body
 field_name: body
 entity_type: node
