@@ -1,0 +1,12 @@
+uuid: 45859f0a-95f1-4147-856b-c674017b72b8
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: c4zaT5cyPxuTXI6JOWt3qRtMvICT9tHB6d9a5VG-CmQ
+id: feedback
+label: 'Website feedback'
+recipients:
+  - me@gregboggs.com
+reply: ''
+weight: 0

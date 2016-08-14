@@ -1,0 +1,14 @@
+uuid: 9e53cae1-82aa-4e76-b6eb-c7a7472f513e
+name: 'Electric Dev'
+mail: me@gregboggs.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
