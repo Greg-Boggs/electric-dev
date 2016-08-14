@@ -1,0 +1,27 @@
+uuid: c7fd6d1e-7057-4318-ae05-5deaa77861bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_framework
+    - node.type.site
+    - taxonomy.vocabulary.frameworks
+id: node.site.field_framework
+field_name: field_framework
+entity_type: node
+bundle: site
+label: Framework
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      frameworks: frameworks
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

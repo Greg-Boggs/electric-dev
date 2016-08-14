@@ -1,0 +1,9 @@
+uuid: a4d57ee6-5ee0-43b9-ab06-061bb9a5db9d
+langcode: en
+status: true
+dependencies: {  }
+name: Frameworks
+vid: frameworks
+description: 'Frameworks supported on the hosting platform.'
+hierarchy: 0
+weight: 0
