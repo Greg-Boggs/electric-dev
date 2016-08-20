@@ -14,4 +14,20 @@ mode: teaser
 content:
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_access: true
+  field_db_command_line: true
+  field_db_host: true
+  field_db_name: true
+  field_db_p: true
+  field_db_username: true
+  field_file_mode: true
+  field_git_clone_url: true
+  field_http_password: true
+  field_http_username: true
+  field_sftp_command_line: true
+  field_sftp_host: true
+  field_sftp_password: true
+  field_sftp_port: true
+  field_sftp_username: true
+  field_site_url: true

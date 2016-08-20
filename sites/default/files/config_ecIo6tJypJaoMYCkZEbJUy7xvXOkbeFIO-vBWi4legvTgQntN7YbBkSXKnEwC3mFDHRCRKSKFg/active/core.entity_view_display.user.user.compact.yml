@@ -13,3 +13,4 @@ mode: compact
 content: {  }
 hidden:
   member_for: true
+  user_picture: true
