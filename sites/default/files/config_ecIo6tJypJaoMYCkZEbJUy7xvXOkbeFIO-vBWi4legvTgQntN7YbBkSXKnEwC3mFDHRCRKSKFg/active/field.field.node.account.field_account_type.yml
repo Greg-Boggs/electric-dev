@@ -1,11 +1,10 @@
-uuid: 9636665d-a2b4-47b9-8a09-09f8e93c7286
+uuid: fdf0bc06-481a-430b-9ca7-329df56e4ae8
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_account_type
     - node.type.account
-    - taxonomy.vocabulary.account_types
 id: node.account.field_account_type
 field_name: field_account_type
 entity_type: node
@@ -18,10 +17,5 @@ default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      account_types: account_types
-    sort:
-      field: _none
-    auto_create: false
+  handler_settings: {  }
 field_type: entity_reference
