@@ -1,0 +1,63 @@
+uuid: 52c68e59-7857-4f9c-8dd9-c107bfca1079
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.account.field_account_type
+    - field.field.node.account.field_sites
+    - node.type.account
+  module:
+    - path
+id: node.account.default
+targetEntityType: node
+bundle: account
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  field_account_type:
+    type: options_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_sites:
+    type: options_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

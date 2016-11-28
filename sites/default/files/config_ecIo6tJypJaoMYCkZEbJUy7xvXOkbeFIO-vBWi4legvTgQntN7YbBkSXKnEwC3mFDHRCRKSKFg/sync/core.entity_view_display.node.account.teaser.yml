@@ -1,0 +1,21 @@
+uuid: 2a46d8d4-ede7-4313-bb22-34f20edb21aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.account.field_account_type
+    - field.field.node.account.field_sites
+    - node.type.account
+  module:
+    - user
+id: node.account.teaser
+targetEntityType: node
+bundle: account
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_account_type: true
+  field_sites: true

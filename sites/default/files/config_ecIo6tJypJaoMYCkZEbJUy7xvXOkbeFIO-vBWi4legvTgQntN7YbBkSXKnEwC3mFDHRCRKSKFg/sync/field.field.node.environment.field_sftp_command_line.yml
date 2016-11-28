@@ -1,0 +1,19 @@
+uuid: 64696854-add0-4162-be00-b0889d27585f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sftp_command_line
+    - node.type.environment
+id: node.environment.field_sftp_command_line
+field_name: field_sftp_command_line
+entity_type: node
+bundle: environment
+label: 'SFTP Command Line'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

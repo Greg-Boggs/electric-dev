@@ -1,0 +1,9 @@
+uuid: 360adc42-b7aa-42d0-a300-af46684d073c
+langcode: en
+status: true
+dependencies: {  }
+name: 'File Modes'
+vid: file_modes
+description: 'How we will deploy files to an environment. Github, local git, or FTP'
+hierarchy: 0
+weight: 0

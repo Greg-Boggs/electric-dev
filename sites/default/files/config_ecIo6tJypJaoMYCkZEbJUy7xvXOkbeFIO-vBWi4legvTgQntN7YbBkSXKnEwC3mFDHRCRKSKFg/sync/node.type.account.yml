@@ -1,0 +1,17 @@
+uuid: 9bfdfdf2-c3e5-4375-a94d-77deda807761
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Account
+type: account
+description: 'Each account has dedicated resources and can have many sites. One user can have multiple accounts. '
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false
