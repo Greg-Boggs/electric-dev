@@ -1,9 +1,0 @@
-uuid: 36fae310-380f-407f-993c-604fdeab9e36
-langcode: en
-status: true
-dependencies: {  }
-name: 'Account types'
-vid: account_types
-description: 'Account types represent different service levels.'
-hierarchy: 0
-weight: 0
