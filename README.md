@@ -12,11 +12,13 @@ npm run build   # production build into public/
 
 Pages live in `content/`, templates in `layouts/`, styles in `assets/css/`. Design work (style guide, wireframes, sitemap) is in `design/`.
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers)
+
+Connect the repo in Cloudflare Workers (Git integration). Settings live in `wrangler.jsonc`.
 
 - Build command: `npm run build`
-- Output directory: `public`
-- Environment variables: `NODE_VERSION=22`, `HUGO_VERSION=0.170.0`
+- Deploy command: `npx wrangler deploy`
+- Environment variable: `NODE_VERSION=22`
 
 ## License
 
