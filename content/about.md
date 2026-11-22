@@ -29,6 +29,9 @@ blocks:
   - title: Your support team
     kicker: Technicians, Portland
     text: The people who answer your tickets, visit your office and approve every change. You'll know them by name.
+  link:
+    label: See open positions
+    url: /careers/
 - type: cards
   heading: What we hold ourselves to
   min: 14rem

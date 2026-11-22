@@ -19,6 +19,7 @@
     - { label: Coverage and locations, url: /locations/ }
     - { label: Guides, url: /resources/ }
     - { label: Blog, url: /blog/ }
+    - { label: Careers, url: /careers/ }
     - { label: Contact, url: /proposal/ }
 - heading: Trust
   links:
