@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: nonprofits.jpg
+    alt: Volunteers in gloves packing food into bags at a community food drive
 blocks:
 - type: cards
   heading: Common IT problems

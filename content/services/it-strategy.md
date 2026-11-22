@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: it-strategy.jpg
+    alt: Two colleagues talking through a plan in front of a whiteboard
 blocks:
 - type: cards
   heading: Signs you need this

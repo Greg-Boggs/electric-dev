@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: no-it-staff.jpg
+    alt: A coworker leaning over to help a colleague with something on a laptop
 blocks:
 - type: cards
   heading: Common IT problems

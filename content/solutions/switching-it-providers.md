@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: switching-providers.jpg
+    alt: Two colleagues sitting at a table, one turned to explain something to the other
 blocks:
 - type: cards
   heading: Common IT problems

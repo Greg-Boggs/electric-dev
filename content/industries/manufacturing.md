@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: manufacturing.jpg
+    alt: A worker welding at a machine on a factory floor
 blocks:
 - type: cards
   heading: Common IT problems

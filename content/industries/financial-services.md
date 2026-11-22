@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: financial-services.jpg
+    alt: A woman working on a laptop at a tidy desk in a bright office
 blocks:
 - type: cards
   heading: Common IT problems

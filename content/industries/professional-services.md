@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: professional-services.jpg
+    alt: A professional at a desk with a laptop in a small office with a brick wall
 blocks:
 - type: cards
   heading: Common IT problems

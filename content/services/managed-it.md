@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: managed-it.jpg
+    alt: Two colleagues sitting side by side at a bright window table, looking at a laptop together
 blocks:
 - type: cards
   heading: Signs you need this

@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: construction.jpg
+    alt: A site office trailer and pickup truck on a construction site, with workers walking past
 blocks:
 - type: cards
   heading: Common IT problems

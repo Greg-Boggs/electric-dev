@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: help-desk.jpg
+    alt: A support headset resting on a desk beside an open laptop
 blocks:
 - type: cards
   heading: Signs you need this

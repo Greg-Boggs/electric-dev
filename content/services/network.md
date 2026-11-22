@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: network.jpg
+    alt: Rows of blue network cables running into a patch panel
 blocks:
 - type: cards
   heading: Signs you need this

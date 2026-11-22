@@ -1,7 +1,7 @@
 {{- $h := .Params.hero | default dict }}
 {{- $heading := $h.heading | default .Title }}
 <section class="section page-hero"><div class="wrap">
-  <div class="hero{{ if $h.art }} hero-split{{ end }}">
+  <div class="hero{{ if or $h.art $h.image }} hero-split{{ end }}">
     <div class="stack" style="--stack-space: var(--space-m)">
       {{ with $h.kicker }}<p class="kicker">{{ . }}</p>{{ end }}
       <h1{{ if $.IsHome }} class="display"{{ end }}>{{ $heading }}</h1>
@@ -14,6 +14,7 @@
       {{- end }}
       {{ with $h.note }}<p class="hero-note">{{ . }}</p>{{ end }}
     </div>
-    {{ if $h.art }}<div class="hero-art" aria-hidden="true">{{ partial "art.html" . }}</div>{{ end }}
+    {{ with $h.image }}<figure class="hero-photo">{{ partial "photo.html" (dict "image" . "eager" true "sizes" "(width >= 56rem) 40vw, 100vw") }}</figure>
+    {{ else }}{{ if $h.art }}<div class="hero-art" aria-hidden="true">{{ partial "art.html" . }}</div>{{ end }}{{ end }}
   </div>
 </div></section>

@@ -14,7 +14,9 @@ blocks:
 
 
     Our team works 8am to 6pm, Monday to Friday, from Portland, with visits to client offices across the metro area. Out-of-hours work is shared on a rota and agreed in advance.'
-  art: decorative
+  image:
+    src: careers-team.jpg
+    alt: A small team meeting in a brick-walled office, one person presenting at a whiteboard
 - type: cards
   id: open-positions
   tone: tint

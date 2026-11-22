@@ -1,0 +1,18 @@
+{{- /* Responsive photo from assets/images/photos/.
+       Call with dict "image" (map: src, alt, position) "sizes" (string) "eager" (bool).
+       src is the file name without folder, e.g. "managed-it.jpg". Credits: assets/images/photos/CREDITS.md */ -}}
+{{- $i := .image }}
+{{- $src := resources.Get (printf "images/photos/%s" $i.src) }}
+{{- if not $src }}{{ errorf "photo.html: image %q not found in assets/images/photos/" $i.src }}{{ end }}
+{{- $widths := slice 480 800 1200 1600 }}
+{{- $set := slice }}
+{{- $fallback := "" }}
+{{- range $widths }}
+  {{- if le . $src.Width }}
+    {{- $r := $src.Resize (printf "%dx webp q72" .) }}
+    {{- $set = $set | append (printf "%s %dw" $r.RelPermalink $r.Width) }}
+    {{- if eq . 800 }}{{ $fallback = $r }}{{ end }}
+  {{- end }}
+{{- end }}
+{{- if not $fallback }}{{ $fallback = $src.Resize "800x webp q72" }}{{ end }}
+<img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $set ", " }}" sizes="{{ .sizes | default "(width >= 56rem) 40vw, 100vw" }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ $i.alt }}"{{ with $i.position }} style="object-position: {{ . | safeCSS }}"{{ end }}{{ if .eager }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async">

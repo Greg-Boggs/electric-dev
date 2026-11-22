@@ -17,7 +17,9 @@ blocks:
 
 
     Electric Dev is the IT company I wished I could have hired back then: local, honest about cost, and quick to fix things.'
-  art: decorative
+  image:
+    src: portland-skyline.jpg
+    alt: Portland at sunset, with downtown below and Mount Hood on the horizon
 - type: cards
   tone: tint
   heading: Who's accountable

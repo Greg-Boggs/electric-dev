@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: device-management.jpg
+    alt: A laptop and mouse on a wooden desk beside a white chair
 blocks:
 - type: cards
   heading: Signs you need this

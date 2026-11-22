@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: backup.jpg
+    alt: A clean, brightly lit data center with rows of server cabinets
 blocks:
 - type: cards
   heading: Signs you need this

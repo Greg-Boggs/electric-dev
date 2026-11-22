@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: compliance.jpg
+    alt: Office staff working at desks with multiple monitors
 blocks:
 - type: cards
   heading: Common IT problems

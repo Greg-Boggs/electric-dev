@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: microsoft-365.jpg
+    alt: Two colleagues at a standing desk by a window, reviewing work on a computer together
 blocks:
 - type: cards
   heading: Signs you need this

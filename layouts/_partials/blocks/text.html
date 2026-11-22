@@ -1,4 +1,4 @@
-<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap{{ if or .art .aside }} split{{ end }}">
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap{{ if or .art .aside .image }} split{{ end }}">
   <div class="stack" style="--stack-space: var(--space-s)">
     {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
     {{ with .heading }}<h2>{{ . }}</h2>{{ end }}

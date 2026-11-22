@@ -10,7 +10,9 @@ hero:
   secondary:
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: home-team.jpg
+    alt: Four coworkers gathered around a laptop at a meeting table, smiling at something on screen
   kicker: Managed IT services in Portland
 blocks:
 - type: pages

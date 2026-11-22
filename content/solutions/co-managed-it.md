@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: co-managed.jpg
+    alt: A colleague working at a laptop while another reviews a screen in the background
 blocks:
 - type: cards
   heading: Common IT problems

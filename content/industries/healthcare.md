@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: healthcare.jpg
+    alt: A clean, modern clinic reception desk and waiting area
 blocks:
 - type: cards
   heading: Common IT problems

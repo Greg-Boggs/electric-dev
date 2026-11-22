@@ -12,7 +12,9 @@ hero:
   secondary: &id001
     label: See pricing
     url: /pricing/
-  art: true
+  image:
+    src: cybersecurity.jpg
+    alt: An open-plan office with people working at desks with large monitors
 blocks:
 - type: cards
   heading: Signs you need this

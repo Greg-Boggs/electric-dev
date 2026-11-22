@@ -19,7 +19,9 @@ blocks:
   link:
     label: About Managed IT
     url: /services/managed-it/
-  art: decorative
+  image:
+    src: services-pairing.jpg
+    alt: Two colleagues working through a problem together on a laptop
 - type: pages
   section: /services
   exclude: /services/managed-it/
