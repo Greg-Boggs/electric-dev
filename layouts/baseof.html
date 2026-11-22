@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en-US" }}">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{{ partial "header.html" . }}
+{{ if site.Params.preview }}
+<div class="preview-note"><div class="wrap"><p><strong>Draft site.</strong> This copy is a first draft for review. Text in [square brackets] marks a fact we still need to confirm.</p></div></div>
+{{ end }}
+<main id="main">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "footer.html" . }}
+{{ $nav := resources.Get "js/nav.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ $nav.RelPermalink }}" integrity="{{ $nav.Data.Integrity }}" defer></script>
+{{ if .Params.estimate }}
+{{ $est := resources.Get "js/estimate.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ $est.RelPermalink }}" integrity="{{ $est.Data.Integrity }}" defer></script>
+{{ end }}
+{{ if .Params.form }}
+<p class="visually-hidden" aria-live="polite" id="form-announcer"></p>
+{{ $form := resources.Get "js/form.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ $form.RelPermalink }}" integrity="{{ $form.Data.Integrity }}" defer></script>
+{{ end }}
+</body>
+</html>

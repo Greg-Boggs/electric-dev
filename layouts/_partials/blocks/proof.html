@@ -1,0 +1,10 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"><div class="wrap stack" style="--stack-space: var(--space-l)">
+  {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+  {{ with .logosLabel }}<p class="kicker">{{ . }}</p>{{ end }}
+  {{ with .logos }}<ul class="logo-row" role="list">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+  {{ with .quote }}<figure class="card quote">
+    <blockquote><p>{{ . }}</p></blockquote>
+    {{ with $.cite }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>{{ end }}
+  {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+</div></section>

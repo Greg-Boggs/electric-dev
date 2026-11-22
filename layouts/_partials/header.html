@@ -1,0 +1,21 @@
+{{- $current := . }}
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/"><img src="/brand/lockup.svg" alt="{{ site.Title }} home" width="174" height="36"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="menu-button btn secondary small" type="button" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Menu</span>
+      </button>
+      <ul id="site-menu" class="site-menu" popover="auto">
+        {{- range site.Menus.main }}
+        {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+        {{- with .Page }}{{ if or (eq $current .) ($current.IsDescendant .) }}{{ $active = true }}{{ end }}{{ end }}
+        <li><a href="{{ .URL }}"{{ if $active }} aria-current="{{ if eq $current.RelPermalink .URL }}page{{ else }}true{{ end }}"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+        <li class="menu-cta"><a class="btn" href="/proposal/">Get a proposal</a></li>
+      </ul>
+    </nav>
+    <a class="btn small header-cta" href="/proposal/">Get a proposal</a>
+  </div>
+</header>

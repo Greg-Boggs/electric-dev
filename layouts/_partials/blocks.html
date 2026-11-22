@@ -1,0 +1,9 @@
+{{- $page := . }}
+{{- range $i, $b := .Params.blocks }}
+  {{- $name := printf "blocks/%s.html" $b.type }}
+  {{- if templates.Exists (printf "_partials/%s" $name) }}
+    {{- partial $name (merge $b (dict "page" $page "index" $i)) }}
+  {{- else }}
+    {{- errorf "Unknown block type %q on %s" $b.type $page.File.Path }}
+  {{- end }}
+{{- end }}

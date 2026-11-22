@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+{{ partial "hero.html" . }}
+{{ with .Content }}<section class="section prose-section"><div class="wrap prose">{{ . }}</div></section>{{ end }}
+{{ partial "blocks.html" . }}
+{{ end }}

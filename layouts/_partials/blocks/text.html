@@ -1,0 +1,10 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap{{ if or .art .aside }} split{{ end }}">
+  <div class="stack" style="--stack-space: var(--space-s)">
+    {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+    {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .body }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+    {{ with .link }}<p class="section-action"><a class="btn secondary" href="{{ .url }}">{{ .label }}</a></p>{{ end }}
+    {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+  </div>
+  {{ partial "block-aside.html" . }}
+</div></section>

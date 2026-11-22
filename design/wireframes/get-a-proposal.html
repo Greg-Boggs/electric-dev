@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a proposal · Wireframe</title>
+<link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<p class="wf-banner">Wireframe: layout only, no visual design. All text is placeholder. <a href="pages.html">All pages</a></p>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">[Logo] Electric Dev</a>
+    <nav aria-label="Main">
+      <button class="menu-btn" type="button" popovertarget="menu" aria-label="Open menu">Menu</button>
+      <ul id="menu" popover>
+        <li class="menu-close"><span>Menu</span><button type="button" popovertarget="menu" popovertargetaction="hide">Close</button></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="industry.html">Industries</a></li>
+        <li><a href="how-we-work.html">How we work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="menu-cta"><a class="btn primary" href="get-a-proposal.html">Get a proposal</a></li>
+      </ul>
+    </nav>
+    <a class="btn primary header-cta" href="get-a-proposal.html">Get a proposal</a>
+  </div>
+</header>
+<main>
+<section class="section hero"><div class="wrap ">
+<div><p class="sec-label">Hero</p><h1>[Get a proposal]</h1><p class="lede">[What the reader will get back, and roughly when.]</p><p class="actions"><a class="btn primary" href="#form">Jump to form</a></p></div>
+
+</div></section>
+<section class="section "><div class="wrap">
+<p class="sec-label">Form and reassurance</p>
+<div class="split form-split">
+<form class="form" id="form" onsubmit="this.hidden=true;document.getElementById('done').hidden=false;return false">
+  <p class="sec-label">Form (Formspree)</p>
+  <label>Your name<input type="text" autocomplete="name"></label>
+  <label>Work email<input type="email" autocomplete="email"></label>
+  <label>Company size<select><option>10 to 49 employees</option><option>50 to 199 employees</option><option>200 to 499 employees</option><option>500 to 1,000 employees</option></select></label>
+  <label>[Open question for the reader]<textarea rows="4"></textarea></label>
+  <label class="inline"><input type="checkbox"> I'd rather talk on a call</label>
+  <p class="note">Maybe: number of computers, current IT setup, phone. Fewer fields is better.</p>
+  <p><button class="btn primary" type="submit">Get a proposal</button></p>
+</form>
+<div id="done" class="card" hidden><p class="sec-label">After submitting</p><h2>[Confirmation heading]</h2><p>[Repeats the next steps.]</p></div>
+<aside class="stack">
+  <div class="card"><p class="sec-label">What happens next</p><ol><li>[We reply]</li><li>[A short call]</li><li>[A written proposal with a price]</li></ol></div>
+  <div class="card"><p class="sec-label">Reassurance</p><p>[No obligation. What we do with your details.]</p><p><a href="#">[Privacy policy]</a> · <a href="pricing.html">See pricing</a></p></div>
+  <div class="card"><p class="sec-label">Other ways to reach us</p><p>[Email] · [Phone]</p><p class="small">8am to 6pm, Monday to Friday</p></div>
+</aside>
+</div>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div><p class="label">Services</p><ul><li><a href="service.html">Managed IT</a></li><li><a href="service.html">Help desk</a></li><li><a href="service.html">Cybersecurity</a></li><li><a href="services.html">All services</a></li></ul></div>
+    <div><p class="label">Pricing</p><ul><li><a href="pricing.html">Plans</a></li><li><a href="pricing.html#compare">Compare plans</a></li><li><a href="get-a-proposal.html">Get a proposal</a></li></ul></div>
+    <div><p class="label">Company</p><ul><li><a href="about.html">About</a></li><li><a href="how-we-work.html">How we work</a></li><li><a href="industry.html">Industries</a></li><li><a href="blog-post.html">Blog</a></li><li><a href="get-a-proposal.html">Contact</a></li></ul></div>
+    <div><p class="label">Trust</p><ul><li><a href="security.html">Security and data handling</a></li><li><a href="#">[Privacy]</a></li><li><a href="#">[Accessibility]</a></li></ul></div>
+  </div>
+  <div class="wrap"><p class="small">[Legal name] · Portland, Oregon · Support 8am to 6pm, Monday to Friday · [contact line]</p></div>
+</footer>
+</body>
+</html>

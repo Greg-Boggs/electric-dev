@@ -1,0 +1,168 @@
+/*
+  Electric Dev design tokens: Pacific Current
+  Source of truth for the Hugo build. Copy to assets/css/ when the build starts.
+
+  Tiers:
+  1. Palette: raw colors. Only tokens.css should use these directly.
+  2. Semantic: what a color is for. Components use these.
+  3. Component: a few tokens a component exposes so a variant can change it.
+
+  Contrast ratios are WCAG 2 and listed next to every text pair.
+  The site is light only. Dark surfaces (fix log, footer) are set per component.
+*/
+
+/* ---------- Fonts: self-hosted, OFL-1.1, two weights (400 and 600) ---------- */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url(fonts/source-serif-4-latin-wght-normal.woff2) format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url(fonts/ibm-plex-sans-latin-wght-normal.woff2) format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: only light;
+
+  /* ---------- 1. Palette ---------- */
+  --mist: #F5F8FB;          /* page */
+  --white: #FFFFFF;         /* cards, fields */
+  --tide: #E8F1F4;          /* hero wash end, tinted panels */
+  --deep-water: #0B2540;    /* text, dark surfaces */
+  --deep-water-2: #12304F;  /* raised panel on deep water */
+  --slate: #475A70;         /* muted text */
+  --fog: #A9B8CA;           /* muted text on deep water */
+  --rock: #748499;          /* field and control borders */
+  --sand: #D9E1EA;          /* dividers, card borders */
+  --current: #00707A;       /* primary accent */
+  --current-deep: #005A62;  /* primary hover and pressed */
+  --current-tint: #E6F2F3;  /* info callout */
+  --shallows: #7FC8CF;      /* decoration, links on deep water */
+  --beacon: #FFB547;        /* signature amber fill */
+  --beacon-ink: #8A5300;    /* amber text and marks on light */
+  --beacon-tint: #FFF4E0;   /* highlight wash */
+  --kelp: #86EFAC;          /* "fixed" on dark surfaces */
+  --ember: #B42318;         /* errors */
+  --ember-tint: #FDECEA;    /* error callout */
+  --foam: #E6EAF0;          /* text on deep water */
+  --channel: #4A6684;       /* borders on deep water */
+
+  /* ---------- 2. Semantic color ---------- */
+  --color-page: var(--mist);
+  --color-surface: var(--white);
+  --color-surface-tint: var(--tide);
+  --color-text: var(--deep-water);          /* 14.6:1 on page, 15.5:1 on surface */
+  --color-text-muted: var(--slate);         /* 6.7:1 on page, 7.1:1 on surface */
+  --color-accent: var(--current);           /* 5.5:1 on page, 5.8:1 on surface */
+  --color-accent-strong: var(--current-deep); /* 8.0:1 on surface */
+  --color-on-accent: var(--white);          /* 5.8:1 on accent, 8.0:1 on accent-strong */
+  --color-link: var(--current);
+  --color-link-hover: var(--current-deep);
+  --color-border: var(--rock);              /* 3.6:1 on page, 3.8:1 on surface (non-text 3:1) */
+  --color-divider: var(--sand);             /* decorative only, never the only boundary of a control */
+  --color-focus: var(--current-deep);
+
+  /* Amber: the signature. Status, highlights, the "Most popular" badge. */
+  --color-signature: var(--beacon);         /* fill only on light; deep-water text on it is 8.8:1 */
+  --color-on-signature: var(--deep-water);
+  --color-signature-text: var(--beacon-ink); /* 6.3:1 on surface, 5.9:1 on page, 5.8:1 on highlight */
+  --color-highlight: var(--beacon-tint);    /* deep-water text on it is 14.2:1 */
+
+  /* Status */
+  --color-status-ok: var(--current);        /* healthy, done */
+  --color-status-working: var(--beacon);    /* in progress dot; ringed in beacon-ink so it clears 3:1 */
+  --color-status-error: var(--ember);       /* 6.6:1 on surface, 6.2:1 on page */
+  --color-error-tint: var(--ember-tint);    /* ember text on it is 5.8:1 */
+  --color-info-tint: var(--current-tint);   /* deep-water 13.6:1, current 5.1:1 */
+
+  /* Dark surface (footer, fix log, inverse bands) */
+  --color-inverse: var(--deep-water);
+  --color-inverse-raised: var(--deep-water-2);
+  --color-on-inverse: var(--foam);             /* 12.9:1 on deep water, 11.1:1 on raised */
+  --color-on-inverse-muted: var(--fog);     /* 7.7:1 on deep water, 6.7:1 on raised */
+  --color-inverse-link: var(--shallows);    /* 8.2:1 on deep water */
+  --color-inverse-signature: var(--beacon); /* 8.8:1 on deep water, 7.7:1 on raised */
+  --color-inverse-ok: var(--kelp);          /* 11.1:1 on deep water */
+  --color-inverse-border: var(--channel);         /* decorative frame on deep water */
+
+  /* ---------- Type ---------- */
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Two weights for the whole site. Never 500 or 700. */
+  --weight-regular: 400;
+  --weight-strong: 600;
+
+  /* Scale: about 1.25 at small screens, opening up to about 1.333 on wide ones.
+     Fluid sizes keep max at or below 2.5x min so zoom still reaches 200%. */
+  --text-xs: 0.8125rem;                                   /* 13px: legal, captions only */
+  --text-sm: 0.875rem;                                    /* 14px: hints, meta, badges */
+  --text-base: 1.0625rem;                                 /* 17px: body */
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem); /* lede */
+  --text-h4: clamp(1.25rem, 1.15rem + 0.4vw, 1.4375rem);
+  --text-h3: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --text-h2: clamp(1.75rem, 1.35rem + 1.8vw, 2.75rem);
+  --text-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  --text-display: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem); /* hero headline only */
+  --text-price: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+
+  --leading-tight: 1.1;   /* display, h1 */
+  --leading-snug: 1.25;   /* h2 to h4 */
+  --leading-body: 1.6;
+  --measure: 66ch;        /* longest line of running text */
+
+  /* ---------- Space: 4px steps, in rem ---------- */
+  --space-3xs: 0.25rem;  /* 4 */
+  --space-2xs: 0.5rem;   /* 8 */
+  --space-xs: 0.75rem;   /* 12 */
+  --space-s: 1rem;       /* 16 */
+  --space-m: 1.5rem;     /* 24 */
+  --space-l: 2rem;       /* 32 */
+  --space-xl: 3rem;      /* 48 */
+  --space-2xl: 4rem;     /* 64 */
+  --space-3xl: 6rem;     /* 96 */
+  --space-section: clamp(3rem, 2rem + 5vw, 6rem); /* between page sections */
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);      /* page side padding */
+  --page-max: 75rem;
+
+  /* ---------- Radius ---------- */
+  --radius-s: 6px;     /* badges, small controls */
+  --radius-m: 10px;    /* buttons, fields, cards */
+  --radius-l: 16px;    /* hero panels, plan cards */
+  --radius-pill: 999px;
+
+  /* ---------- Shadow: navy-tinted, used sparingly ---------- */
+  --shadow-s: 0 1px 2px rgb(11 37 64 / 0.08);
+  --shadow-m: 0 2px 4px rgb(11 37 64 / 0.06), 0 8px 24px rgb(11 37 64 / 0.08);
+  --shadow-l: 0 4px 8px rgb(11 37 64 / 0.06), 0 20px 48px rgb(11 37 64 / 0.12);
+
+  /* ---------- Motion ---------- */
+  --duration-fast: 120ms;   /* hover, press */
+  --duration-base: 200ms;   /* disclosure, focus */
+  --duration-slow: 320ms;   /* fix log line reveal */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
+
+  /* ---------- Focus ---------- */
+  --focus-ring: 3px solid var(--color-focus);
+  --focus-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

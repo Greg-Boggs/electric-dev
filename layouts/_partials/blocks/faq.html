@@ -1,0 +1,7 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap narrow stack" style="--stack-space: var(--space-m)">
+  {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+  <div class="faq">
+    {{ range .items }}<details><summary>{{ .q }}</summary><div class="prose">{{ .a | markdownify }}</div></details>{{ end }}
+  </div>
+  {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+</div></section>

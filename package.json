@@ -1,0 +1,25 @@
+{
+  "name": "electric.dev",
+  "version": "1.0.0",
+  "description": "electricdev.net marketing site",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo --minify",
+    "lighthouse": "lighthouse"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "hugo-extended": "^0.170.0",
+    "lighthouse": "^13.6.0",
+    "svgo": "^4.1.0"
+  },
+  "overrides": {
+    "adm-zip": "^0.6.1"
+  },
+  "private": true
+}

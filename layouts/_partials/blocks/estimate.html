@@ -1,0 +1,21 @@
+{{- $d := hugo.Data.plans }}
+<section class="section tint"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap split">
+  <div class="stack" style="--stack-space: var(--space-s)">
+    <h2>{{ .heading | default "Estimate your monthly cost" }}</h2>
+    {{ with .intro }}<p>{{ . }}</p>{{ end }}
+  </div>
+  <form class="card estimate stack" style="--stack-space: var(--space-s)" data-estimate data-minimum="{{ $d.minimumUsers }}">
+    <div class="field">
+      <label for="est-users">Number of users</label>
+      <input id="est-users" name="users" type="number" inputmode="numeric" min="1" max="1000" value="25">
+    </div>
+    <div class="field">
+      <label for="est-plan">Plan</label>
+      <select id="est-plan" name="plan">
+        {{ range $d.plans }}<option value="{{ .price }}" data-from="{{ .from }}"{{ if .featured }} selected{{ end }}>{{ .name }} ({{ if .from }}from {{ end }}${{ .price }} per user)</option>{{ end }}
+      </select>
+    </div>
+    <output class="estimate-result" for="est-users est-plan" aria-live="polite">Enter your number of users to see an estimate.</output>
+    <p class="note">Plans have a {{ $d.minimumUsers }}-user minimum. Excludes the one-time onboarding fee, licenses, servers and projects.</p>
+  </form>
+</div></section>

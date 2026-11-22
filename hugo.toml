@@ -1,0 +1,54 @@
+baseURL = "https://electricdev.net/"
+locale = "en-US"
+title = "Electric Dev"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+  # While true, every page shows a "placeholder copy" note and is marked noindex.
+  # Set to false only once real, approved copy is in place.
+  preview = false
+  noindex = true  # keep search engines out until launch
+  description = "Managed IT services for Portland companies, from a local team."
+  city = "Portland, Oregon"
+  audience = "Companies of 10 to 1,000 employees"
+  hours = "8am to 6pm, Monday to Friday"
+  hoursNote = "Out-of-hours service is available."
+  # Formspree form ID for Get a proposal (the part after formspree.io/f/). Empty until set up.
+  formspreeID = ""
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[outputs]
+  home = ["html"]
+  section = ["html"]
+
+[sitemap]
+  changeFreq = "monthly"
+
+[build]
+  [build.buildStats]
+    enable = false
+
+[menus]
+  [[menus.main]]
+    name = "Services"
+    pageRef = "/services"
+    weight = 10
+  [[menus.main]]
+    name = "Pricing"
+    pageRef = "/pricing"
+    weight = 20
+  [[menus.main]]
+    name = "Industries"
+    pageRef = "/industries"
+    weight = 30
+  [[menus.main]]
+    name = "How we work"
+    pageRef = "/how-we-work"
+    weight = 40
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 50

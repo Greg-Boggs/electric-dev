@@ -1,0 +1,28 @@
+# Footer link groups, matching the wireframe's four columns. Links use site paths.
+- heading: Services
+  links:
+    - { label: Managed IT, url: /services/managed-it/ }
+    - { label: Help desk, url: /services/help-desk/ }
+    - { label: Cybersecurity, url: /services/cybersecurity/ }
+    - { label: All services, url: /services/ }
+- heading: Pricing
+  links:
+    - { label: Plans, url: /pricing/ }
+    - { label: Compare plans, url: "/pricing/#compare" }
+    - { label: FAQ, url: /faq/ }
+    - { label: Get a proposal, url: /proposal/ }
+- heading: Company
+  links:
+    - { label: About, url: /about/ }
+    - { label: How we work, url: /how-we-work/ }
+    - { label: Industries, url: /industries/ }
+    - { label: Coverage and locations, url: /locations/ }
+    - { label: Guides, url: /resources/ }
+    - { label: Blog, url: /blog/ }
+    - { label: Contact, url: /proposal/ }
+- heading: Trust
+  links:
+    - { label: Security and data handling, url: /security/ }
+    - { label: Privacy, url: /privacy/ }
+    - { label: Terms, url: /terms/ }
+    - { label: Accessibility, url: /accessibility/ }

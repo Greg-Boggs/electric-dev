@@ -1,0 +1,12 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap split">
+  <div class="stack" style="--stack-space: var(--space-s)">
+    {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .body }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+    {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+  </div>
+  <div class="card hours-card">
+    <p class="kicker">Support hours</p>
+    <p class="hours">{{ site.Params.hours }}</p>
+    <p>{{ site.Params.hoursNote }} {{ .outOfHours | default "Call (503) 555-0199. Out-of-hours work is $175 an hour, and it's included in the Secure plan." }}</p>
+  </div>
+</div></section>

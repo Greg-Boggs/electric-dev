@@ -1,0 +1,12 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap stack" style="--stack-space: var(--space-l)">
+  {{ if or .heading .intro }}<div class="stack section-head" style="--stack-space: var(--space-xs)">
+    {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+    {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .intro }}<p class="lede">{{ . }}</p>{{ end }}
+  </div>{{ end }}
+  <div class="grid-auto" style="--grid-min: {{ .min | default "16rem" }}">
+    {{ range .items }}{{ partial "card.html" . }}{{ end }}
+  </div>
+  {{ with .link }}<p class="section-action"><a class="btn secondary" href="{{ .url }}">{{ .label }}</a></p>{{ end }}
+  {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+</div></section>

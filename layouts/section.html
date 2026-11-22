@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+{{ partial "hero.html" . }}
+{{ with .Content }}<section class="section prose-section"><div class="wrap prose">{{ . }}</div></section>{{ end }}
+{{ $pages := .Pages.ByWeight }}
+{{ if and $pages (not .Params.hideList) }}
+<section class="section"><div class="wrap stack" style="--stack-space: var(--space-l)">
+  {{ with .Params.listHeading }}<h2>{{ . }}</h2>{{ end }}
+  <div class="grid-auto">
+    {{ range $pages }}{{ partial "card.html" (dict "title" .LinkTitle "text" (.Params.summary | default .Description) "url" .RelPermalink "kicker" .Params.kicker) }}{{ end }}
+  </div>
+</div></section>
+{{ end }}
+{{ partial "blocks.html" . }}
+{{ end }}

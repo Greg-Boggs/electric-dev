@@ -1,0 +1,11 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap stack" style="--stack-space: var(--space-m)">
+  {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+  {{ with .intro }}<p>{{ . }}</p>{{ end }}
+  <div class="table-wrap" role="region" aria-label="{{ .heading | default "Table" }}" tabindex="0">
+    <table>
+      <thead><tr>{{ range .columns }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+      <tbody>{{ range .rows }}<tr>{{ range $j, $c := . }}{{ if eq $j 0 }}<th scope="row">{{ $c }}</th>{{ else }}<td>{{ $c }}</td>{{ end }}{{ end }}</tr>{{ end }}</tbody>
+    </table>
+  </div>
+  {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+</div></section>

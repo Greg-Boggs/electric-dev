@@ -1,0 +1,22 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap split">
+  <div class="stack" style="--stack-space: var(--space-s)">
+    {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+    {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .body }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+    {{ with .link }}<p class="section-action"><a class="btn secondary" href="{{ .url }}">{{ .label }}</a></p>{{ end }}
+  </div>
+  <div class="fixlog-wrap">
+    <figure class="fixlog play" aria-labelledby="fixlog-cap-{{ .index }}">
+      <div class="bar"><span>ticket 1042 · front-desk-laptop</span><span class="ok">fixed</span></div>
+      <ol>
+        <li style="--i:0"><span class="step">reported</span><span>Outlook keeps asking for my password</span></li>
+        <li style="--i:1"><span class="step">checked</span><span>sign-in logs, saved credentials, Office version</span></li>
+        <li style="--i:2"><span class="step">found</span><span>an old saved password after last week's reset</span></li>
+        <li style="--i:3"><span class="step">plan</span><span>clear the saved credential, re-sign in to Outlook</span></li>
+        <li class="human" style="--i:4"><span class="step">approved</span><span>by a technician, 9:14am</span></li>
+        <li class="done" style="--i:5"><span class="step">fixed</span><span>Outlook signed in, no more prompts. Took 6 minutes.</span></li>
+      </ol>
+      <figcaption id="fixlog-cap-{{ .index }}">{{ .caption | default "A typical password ticket, start to finish." }}</figcaption>
+    </figure>
+  </div>
+</div></section>

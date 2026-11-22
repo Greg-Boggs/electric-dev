@@ -1,0 +1,11 @@
+<section class="section{{ with .tone }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap stack" style="--stack-space: var(--space-l)">
+  {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+  <div class="grid-auto" style="--grid-min: 18rem">
+    {{ range .items }}
+    <figure class="card quote testimonial">
+      <blockquote><p>{{ .quote }}</p></blockquote>
+      <figcaption><strong>{{ .name }}</strong><br>{{ .role }}{{ with .company }}, {{ . }}{{ end }}</figcaption>
+    </figure>
+    {{ end }}
+  </div>
+</div></section>

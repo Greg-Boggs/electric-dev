@@ -1,0 +1,17 @@
+{{- $d := hugo.Data.plans }}
+<section class="section"{{ with .id }} id="{{ . }}"{{ end }}><div class="wrap stack" style="--stack-space: var(--space-l)">
+  {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+  <div class="plans">
+    {{ range $d.plans }}
+    <article class="plan{{ if .featured }} featured{{ end }}">
+      <div>{{ with .badge }}<span class="badge">{{ . }}</span>{{ end }}</div>
+      <h3>{{ .name }}</h3>
+      <p class="price">{{ if .from }}<small>from </small>{{ end }}${{ .price }} <small>{{ .unit }}</small></p>
+      <p class="note">{{ .for }}</p>
+      <ul>{{ range .includes }}<li>{{ . }}</li>{{ end }}</ul>
+      <a class="btn{{ if not .featured }} secondary{{ end }}" href="/proposal/">{{ .action }}</a>
+    </article>
+    {{ end }}
+  </div>
+  {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+</div></section>

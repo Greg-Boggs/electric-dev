@@ -1,0 +1,5 @@
+<article class="card">
+  {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+  <h3>{{ if .url }}<a class="card-link" href="{{ .url }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</h3>
+  {{ with .text }}<p>{{ . }}</p>{{ end }}
+</article>

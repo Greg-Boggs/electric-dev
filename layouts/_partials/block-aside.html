@@ -1,0 +1,9 @@
+{{- with .aside }}
+<div class="card price-card">
+  {{ with .kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+  <p class="price">{{ .price }}</p>
+  {{ with .text }}<p>{{ . }}</p>{{ end }}
+</div>
+{{- else }}{{ with .art }}
+<div class="panel-art" aria-hidden="true">{{ partial "art.html" . }}</div>
+{{- end }}{{ end }}

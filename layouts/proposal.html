@@ -1,0 +1,54 @@
+{{ define "main" }}
+{{ partial "hero.html" . }}
+<section class="section"><div class="wrap split form-split">
+  {{ $id := site.Params.formspreeID }}
+  <form id="form" class="stack proposal-form" style="--stack-space: var(--space-m)" method="post" action="{{ if $id }}https://formspree.io/f/{{ $id }}{{ else }}#{{ end }}">
+    <input type="hidden" name="_next" value="{{ "thank-you/" | absURL }}">
+    <div class="field">
+      <label for="f-name">Your name</label>
+      <input id="f-name" name="name" autocomplete="name" required data-error="f-name-err">
+      <span class="error-text" id="f-name-err">Enter your name.</span>
+    </div>
+    <div class="field">
+      <label for="f-email">Work email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required data-error="f-email-err">
+      <span class="error-text" id="f-email-err">Enter an email address like name@company.com.</span>
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone <span class="optional" id="f-phone-opt">(optional)</span></label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" data-error="f-phone-err">
+      <span class="error-text" id="f-phone-err">Enter a phone number so we can call you.</span>
+    </div>
+    <label class="check"><input type="checkbox" id="f-call" name="call" value="yes"> <span>Call me instead of emailing</span></label>
+    <div class="field">
+      <label for="f-size">Company size</label>
+      <select id="f-size" name="size">
+        <option>10 to 49 employees</option>
+        <option>50 to 199 employees</option>
+        <option>200 to 499 employees</option>
+        <option>500 to 1,000 employees</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-msg">What's the biggest IT headache at your company right now?</label>
+      <textarea id="f-msg" name="message"></textarea>
+    </div>
+    <p><button class="btn" type="submit">Get a proposal</button></p>
+  </form>
+  <aside class="stack" style="--stack-space: var(--space-m)">
+    <div class="card">
+      <h2 class="h4">What happens next</h2>
+      <ol class="next-steps"><li>We reply within one business day.</li><li>A 30-minute call to learn how your IT works today.</li><li>A written proposal with a price, usually within a week.</li></ol>
+    </div>
+    <div class="card">
+      <h2 class="h4">No obligation</h2>
+      <p>We use your details only to reply and prepare your proposal. We never sell them. <a href="/privacy/">Privacy</a> · <a href="/pricing/">See pricing</a></p>
+    </div>
+    <div class="card">
+      <h2 class="h4">Other ways to reach us</h2>
+      <p><a href="mailto:hello@electricdev.net">hello@electricdev.net</a> · <a href="tel:+15035550142">(503) 555-0142</a></p>
+      <p class="note">{{ site.Params.hours }}</p>
+    </div>
+  </aside>
+</div></section>
+{{ end }}

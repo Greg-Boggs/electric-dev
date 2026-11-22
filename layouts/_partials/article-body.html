@@ -1,0 +1,21 @@
+{{ partial "breadcrumbs.html" . }}
+<article class="section article"><div class="wrap narrow stack" style="--stack-space: var(--space-m)">
+  <header class="stack" style="--stack-space: var(--space-s)">
+    <h1>{{ .Title }}</h1>
+    <p class="meta">By {{ .Params.author | default "Greg Boggs" }}{{ if not .Date.IsZero }} · Published <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ end }}{{ if and (not .Lastmod.IsZero) (ne .Lastmod .Date) }} · Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "January 2, 2006" }}</time>{{ end }}</p>
+  </header>
+  {{ with .Params.answer }}<div class="callout answer"><p class="title">Short answer</p><p>{{ . }}</p></div>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+  <aside class="card author">
+    <p class="kicker">About the author</p>
+    <h2 class="h4">{{ .Params.author | default "Greg Boggs" }}</h2>
+    <p>{{ .Params.authorBio | default "Founder of Electric Dev." }}</p>
+  </aside>
+</div></article>
+{{ $related := where (where site.RegularPages "Section" .Section) "Permalink" "ne" .Permalink | first 3 }}
+{{ with $related }}
+<section class="section tint"><div class="wrap stack" style="--stack-space: var(--space-l)">
+  <h2>Related</h2>
+  <div class="grid-auto">{{ range . }}{{ partial "card.html" (dict "title" .LinkTitle "text" (.Params.summary | default .Description) "url" .RelPermalink) }}{{ end }}</div>
+</div></section>
+{{ end }}

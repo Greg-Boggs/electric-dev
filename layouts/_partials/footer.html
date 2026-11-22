@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="/" class="footer-brand"><img src="/brand/lockup-reverse.svg" alt="{{ site.Title }} home" width="174" height="36" loading="lazy"></a>
+      <p>{{ site.Params.city }}<br>Support {{ site.Params.hours }}. {{ site.Params.hoursNote }}</p>
+    </div>
+    <div class="cols">
+      {{- range hugo.Data.footer }}
+      <div>
+        <h2>{{ .heading }}</h2>
+        <ul>
+          {{- range .links }}
+          <li><a href="{{ .url }}">{{ .label }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+    <p class="legal">© {{ now.Year }} {{ site.Title }}. Electric Dev LLC · Portland, Oregon · <a href="mailto:hello@electricdev.net">hello@electricdev.net</a> · <a href="tel:+15035550142">(503) 555-0142</a></p>
+  </div>
+</footer>

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electric Dev logo and branding</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="svg/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="png/favicon.ico" sizes="any">
+<style>
+/* Standalone page: everything it needs is inline, fonts load from fonts/ beside it.
+   Colors, fonts and weights are the Pacific Current style guide's. */
+@font-face { font-family: "Source Serif 4"; src: url(fonts/source-serif-4-latin-wght-normal.woff2) format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-wght-normal.woff2) format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: only light;
+  --mist: #F5F8FB; --white: #FFFFFF; --tide: #E8F1F4;
+  --deep-water: #0B2540; --deep-water-2: #12304F;
+  --slate: #475A70; --fog: #A9B8CA; --sand: #D9E1EA; --rock: #748499;
+  --current: #00707A; --current-deep: #005A62; --shallows: #7FC8CF;
+  --beacon: #FFB547; --beacon-ink: #8A5300; --beacon-tint: #FFF4E0;
+  --ember: #B42318; --foam: #E6EAF0; --channel: #4A6684;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+}
+* { box-sizing: border-box; }
+html { background: var(--mist); color: var(--deep-water); font: 400 1.0625rem/1.6 var(--sans); font-synthesis-weight: none; -webkit-font-smoothing: antialiased; }
+body { margin: 0; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem); }
+h3 { font-size: 1.25rem; }
+p, li { max-inline-size: 66ch; margin: 0; text-wrap: pretty; }
+p + p { margin-block-start: 0.75rem; }
+img, svg { display: block; max-inline-size: 100%; height: auto; }
+code, .machine { font-family: var(--mono); font-size: 0.9em; }
+a { color: var(--current); text-underline-offset: 0.18em; }
+a:hover { color: var(--current-deep); }
+:focus-visible { outline: 3px solid var(--current-deep); outline-offset: 3px; }
+
+.wrap { max-inline-size: 75rem; margin-inline: auto; padding-inline: var(--gutter); }
+section { padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem); border-block-start: 1px solid var(--sand); }
+.kicker { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--current); margin-block-end: 0.5rem; }
+.lede { font-size: 1.2rem; color: var(--slate); margin-block-start: 1rem; }
+.stack > * + * { margin-block-start: 1rem; }
+.grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 16rem)), 1fr)); margin-block-start: 2rem; }
+.card { background: var(--white); border: 1px solid var(--sand); border-radius: 16px; padding: 1.5rem; }
+.card h3 { margin-block-end: 0.5rem; }
+.muted { color: var(--slate); }
+.small { font-size: 0.875rem; }
+.badge { display: inline-block; font-family: var(--sans); font-size: 0.8125rem; font-weight: 600; padding: 0.1rem 0.55rem; border-radius: 6px; background: var(--beacon); color: var(--deep-water); vertical-align: middle; }
+.badge.quiet { background: var(--tide); }
+
+/* Stages that hold a logo */
+.stage { border-radius: 16px; display: grid; place-items: center; padding: clamp(1.5rem, 1rem + 3vw, 3rem); min-block-size: 11rem; }
+.stage.mist { background: var(--mist); border: 1px solid var(--sand); }
+.stage.white { background: var(--white); border: 1px solid var(--sand); }
+.stage.deep { background: var(--deep-water); }
+.stage.raised { background: var(--deep-water-2); }
+.stage.tide { background: var(--tide); }
+.caption { margin-block-start: 0.75rem; font-size: 0.875rem; color: var(--slate); }
+.caption code { color: var(--deep-water); }
+
+/* Page header */
+.top { padding-block: 1.25rem; display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.top img { block-size: 32px; inline-size: auto; }
+.hero { padding-block: clamp(2rem, 1.5rem + 3vw, 4rem); }
+.hero-mark { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 1rem + 3vw, 4rem); align-items: center; margin-block-start: 2.5rem; }
+.hero-mark img { inline-size: clamp(9rem, 6rem + 12vw, 15rem); }
+@media (max-width: 40rem) { .hero-mark { grid-template-columns: 1fr; } }
+
+/* Construction */
+.construct { display: grid; grid-template-columns: minmax(0, 22rem) 1fr; gap: 2rem; align-items: start; margin-block-start: 2rem; }
+@media (max-width: 48rem) { .construct { grid-template-columns: 1fr; } }
+.spec { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1.25rem; margin: 0; }
+.spec dt { font-weight: 600; }
+.spec dd { margin: 0; }
+
+/* Sizes row */
+.sizes { display: flex; gap: 2rem; align-items: end; flex-wrap: wrap; }
+.sizes figure { margin: 0; }
+.sizes figcaption { font-size: 0.8125rem; color: var(--slate); margin-block-start: 0.4rem; font-family: var(--mono); }
+.pixel img { image-rendering: pixelated; }
+
+/* Browser tab mock */
+.tabbar { background: var(--foam); border-radius: 10px 10px 0 0; padding: 0.5rem 0.5rem 0; display: flex; gap: 0.25rem; }
+.tab { display: flex; gap: 0.5rem; align-items: center; padding: 0.45rem 0.85rem; border-radius: 8px 8px 0 0; font-size: 0.8125rem; color: var(--slate); }
+.tab.on { background: var(--white); color: var(--deep-water); }
+.tab img { inline-size: 16px; block-size: 16px; }
+.urlbar { background: var(--white); border: 1px solid var(--sand); border-block-start: 0; border-radius: 0 0 10px 10px; padding: 0.6rem 1rem; font-family: var(--mono); font-size: 0.8125rem; color: var(--slate); }
+
+/* In context: site header and footer */
+.mock { border: 1px solid var(--sand); border-radius: 16px; overflow: hidden; background: var(--mist); }
+.mock-header { background: var(--white); border-block-end: 1px solid var(--sand); display: flex; align-items: center; gap: 1.5rem; padding: 0.85rem 1.25rem; flex-wrap: wrap; }
+.mock-header img { block-size: 32px; inline-size: auto; }
+.mock-header nav { display: flex; gap: 1.25rem; font-size: 0.9375rem; margin-inline-start: auto; color: var(--slate); }
+.mock-btn { font-size: 0.875rem; font-weight: 600; background: var(--current); color: var(--white); border: 1px solid var(--current); border-radius: 10px; padding: 0.4rem 0.85rem; }
+.mock-body { padding: 2.5rem 1.25rem; color: var(--slate); font-size: 0.9375rem; }
+.mock-footer { background: var(--deep-water); color: var(--fog); padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 0.875rem; }
+.mock-footer img { block-size: 28px; inline-size: auto; }
+
+/* Do / don't */
+.rule { display: grid; gap: 0.75rem; }
+.rule .stage { min-block-size: 8rem; }
+.rule p { font-size: 0.9375rem; }
+.no { position: relative; }
+.no::after { content: "Don't"; position: absolute; inset-block-start: 0.6rem; inset-inline-start: 0.6rem; font-size: 0.75rem; font-weight: 600; color: var(--white); background: var(--ember); border-radius: 6px; padding: 0.05rem 0.45rem; }
+.yes::after { content: "Do"; position: absolute; inset-block-start: 0.6rem; inset-inline-start: 0.6rem; font-size: 0.75rem; font-weight: 600; color: var(--white); background: var(--current); border-radius: 6px; padding: 0.05rem 0.45rem; }
+.yes { position: relative; }
+
+/* Swatches */
+.swatch { border-radius: 10px; border: 1px solid var(--sand); overflow: hidden; background: var(--white); }
+.swatch div { block-size: 4.5rem; }
+.swatch p { padding: 0.6rem 0.8rem; font-size: 0.875rem; }
+.swatch code { display: block; color: var(--slate); }
+
+/* Files */
+table { border-collapse: collapse; inline-size: 100%; font-size: 0.9375rem; margin-block-start: 1.5rem; }
+th, td { text-align: start; padding: 0.55rem 0.75rem; border-block-end: 1px solid var(--sand); vertical-align: top; }
+th { font-weight: 600; }
+td code { white-space: nowrap; }
+.table-scroll { overflow-x: auto; }
+
+footer.page { background: var(--deep-water); color: var(--fog); padding-block: 2.5rem; font-size: 0.875rem; }
+footer.page a { color: var(--shallows); }
+</style>
+</head>
+<body>
+
+<div class="wrap top">
+  <img src="svg/lockup.svg" alt="Electric Dev">
+  <span class="small muted">electricdev.net · logo and branding, for review</span>
+</div>
+
+<main>
+<div class="wrap hero">
+  <p class="kicker">Logo and branding</p>
+  <h1>The log bracket</h1>
+  <p class="lede">A navy tile with a bracket that reads as an E, and one amber line inside it. It's built from the Pacific Current style guide: deep water, white, and Beacon amber as a fill. Electric Dev is a working name, so the wordmark is generated from the style guide's fonts and can be rebuilt in a minute if the name changes.</p>
+  <div class="hero-mark">
+    <img src="svg/mark-tile.svg" alt="Electric Dev mark: a white bracket shaped like an E on a navy tile, with an amber bar in the middle">
+    <div class="stack">
+      <p><strong>The bracket is the machine.</strong> Three strokes and a spine give an E, and the open side reads like a code bracket or a line of a log. It's square and heavy, so it holds up at 16 pixels.</p>
+      <p><strong>The amber pill is the beacon.</strong> In the style guide amber marks live status and the moment a person steps in. In the mark it's the one line that's lit: the fix that's happening now. It's always a fill, never text, which matches the amber rule.</p>
+      <p><strong>The tile is deep water.</strong> It gives amber the 8.8:1 contrast it needs, so the full-color mark works on any light page without a second version.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Concepts</p>
+    <h2>Three directions, one recommended</h2>
+    <p class="lede">All three are hand-drawn SVG on the same 48-unit tile so they can be compared at the same size.</p>
+    <div class="grid" style="--min: 15rem">
+      <div class="card">
+        <div class="stage tide" style="min-block-size: 9rem"><img src="svg/mark-tile.svg" width="96" height="96" alt="Concept B: log bracket"></div>
+        <h3 style="margin-block-start: 1rem">B. Log bracket <span class="badge">Recommended</span></h3>
+        <p class="small muted">Reads as an E, ties to the fix log, and uses amber the way the style guide does. Clearest at favicon size.</p>
+      </div>
+      <div class="card">
+        <div class="stage tide" style="min-block-size: 9rem"><img src="svg/concept-a-signal.svg" width="96" height="96" alt="Concept A: a wave line ending in an amber dot"></div>
+        <h3 style="margin-block-start: 1rem">A. Signal line</h3>
+        <p class="small muted">A current that ends in a status light. Friendly, but it doesn't carry the name, and the thin line blurs below 24 pixels.</p>
+      </div>
+      <div class="card">
+        <div class="stage tide" style="min-block-size: 9rem"><img src="svg/concept-c-rings.svg" width="96" height="96" alt="Concept C: tide rings radiating from an amber dot"></div>
+        <h3 style="margin-block-start: 1rem">C. Beacon rings</h3>
+        <p class="small muted">Tide rings around a beacon. Pretty, but it reads as a Wi-Fi or RSS icon, which is a bad look for an IT company.</p>
+      </div>
+    </div>
+    <p class="small muted" style="margin-block-start: 1.25rem">The rest of this page uses concept B.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Lockups</p>
+    <h2>Mark and wordmark</h2>
+    <p class="lede">The wordmark is Source Serif 4 at 600, the style guide's heading face, tracked −0.01em like the headings. Its caps are centered on the tile.</p>
+    <div class="grid" style="--min: 26rem">
+      <div>
+        <div class="stage white"><img src="svg/lockup.svg" width="348" alt="Electric Dev horizontal lockup"></div>
+        <p class="caption"><strong>Primary, horizontal.</strong> Site header, documents, email signatures. <code>svg/lockup.svg</code></p>
+      </div>
+      <div>
+        <div class="stage white"><img src="svg/lockup-stacked.svg" width="220" alt="Electric Dev stacked lockup with electricdev.net"></div>
+        <p class="caption"><strong>Stacked, with the domain.</strong> Square spaces, slide covers, proposals. The domain is Plex Sans 400 in slate. <code>svg/lockup-stacked.svg</code></p>
+      </div>
+      <div>
+        <div class="stage white"><img src="svg/wordmark.svg" width="260" alt="Electric Dev wordmark"></div>
+        <p class="caption"><strong>Wordmark alone.</strong> Where the mark already appears nearby, such as a favicon next to a title. <code>svg/wordmark.svg</code></p>
+      </div>
+      <div>
+        <div class="stage white"><img src="svg/domain.svg" width="300" alt="electricdev.net"></div>
+        <p class="caption"><strong>Domain.</strong> Plex Sans 600 with <code>.net</code> at 400 in Current teal. For merch, slides and print where people need to type the address. <code>svg/domain.svg</code></p>
+      </div>
+    </div>
+
+    <h3 style="margin-block-start: 3rem">Serif or sans for the wordmark</h3>
+    <div class="grid" style="--min: 22rem">
+      <div>
+        <div class="stage mist" style="min-block-size: 8rem"><img src="svg/lockup.svg" width="300" alt="Lockup with serif wordmark"></div>
+        <p class="caption"><span class="badge">Recommended</span> Source Serif 4. Matches the site's headings and reads as established, which is the job the serif does in the style guide.</p>
+      </div>
+      <div>
+        <div class="stage mist" style="min-block-size: 8rem"><img src="svg/lockup-sans.svg" width="300" alt="Lockup with sans wordmark"></div>
+        <p class="caption">IBM Plex Sans 600. Plainer and more technical. Kept as an option: <code>svg/lockup-sans.svg</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Color</p>
+    <h2>Versions for every background</h2>
+    <p class="lede">The tile goes on light backgrounds. On deep water the tile would disappear, so the mark drops it and keeps the white bracket and amber pill.</p>
+    <div class="grid" style="--min: 17rem">
+      <div><div class="stage mist"><img src="svg/lockup.svg" width="240" alt=""></div><p class="caption">Full color on Mist or White. <code>lockup.svg</code></p></div>
+      <div><div class="stage deep"><img src="svg/lockup-reverse.svg" width="232" alt=""></div><p class="caption">Reverse on Deep water: footer, fix log bands, social cards. <code>lockup-reverse.svg</code></p></div>
+      <div><div class="stage white"><img src="svg/lockup-navy.svg" width="232" alt=""></div><p class="caption">One color, navy. Fax, stamps, embossing, single-ink print. <code>lockup-navy.svg</code></p></div>
+      <div><div class="stage raised"><img src="svg/lockup-white.svg" width="232" alt=""></div><p class="caption">One color, white. Photos and any dark color amber can't sit on. <code>lockup-white.svg</code></p></div>
+      <div><div class="stage deep"><img src="svg/lockup-stacked-reverse.svg" width="190" alt=""></div><p class="caption">Stacked reverse. Domain in Fog. <code>lockup-stacked-reverse.svg</code></p></div>
+      <div><div class="stage deep"><img src="svg/mark-tile-raised.svg" width="80" alt=""></div><p class="caption">Tile on deep water, when it must stay a tile (app icons in a dark list): Deep water 2 with a Channel edge. <code>mark-tile-raised.svg</code></p></div>
+    </div>
+
+    <h3 style="margin-block-start: 3rem">Brand colors</h3>
+    <p class="muted" style="margin-block-start: 0.5rem">Only these appear in the logo. All are from the style guide.</p>
+    <div class="grid" style="--min: 10rem">
+      <div class="swatch"><div style="background: var(--deep-water)"></div><p><strong>Deep water</strong><code>#0B2540</code>Tile, wordmark</p></div>
+      <div class="swatch"><div style="background: var(--white)"></div><p><strong>White</strong><code>#FFFFFF</code>Bracket</p></div>
+      <div class="swatch"><div style="background: var(--beacon)"></div><p><strong>Beacon</strong><code>#FFB547</code>The pill, fill only</p></div>
+      <div class="swatch"><div style="background: var(--current)"></div><p><strong>Current</strong><code>#00707A</code>.net in the domain mark</p></div>
+      <div class="swatch"><div style="background: var(--slate)"></div><p><strong>Slate</strong><code>#475A70</code>Domain on light</p></div>
+      <div class="swatch"><div style="background: var(--fog)"></div><p><strong>Fog</strong><code>#A9B8CA</code>Domain on deep water</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Construction</p>
+    <h2>Grid, clear space and minimum sizes</h2>
+    <div class="construct">
+      <svg viewBox="-8 -8 64 64" role="img" aria-label="Construction drawing of the mark on a 48-unit grid with an 8-unit clear space">
+        <rect x="-8" y="-8" width="64" height="64" fill="#E8F1F4"/>
+        <rect x="-8" y="-8" width="64" height="64" fill="none" stroke="#00707A" stroke-width="0.3" stroke-dasharray="1 1"/>
+        <rect width="48" height="48" rx="12" fill="#0B2540"/>
+        <path fill="#FFFFFF" d="M16 8h20a4 4 0 0 1 0 8H16v16h20a4 4 0 0 1 0 8H16a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z"/>
+        <path fill="#FFB547" d="M24 20h8a4 4 0 0 1 0 8h-8a4 4 0 0 1 0-8z"/>
+        <g stroke="#7FC8CF" stroke-width="0.15" opacity="0.7">
+          <path d="M8 0v48M16 0v48M20 0v48M24 0v48M32 0v48M36 0v48M40 0v48M0 8h48M0 16h48M0 20h48M0 28h48M0 32h48M0 40h48"/>
+        </g>
+        <text x="24" y="-2.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="2.6" fill="#00707A">clear space 8</text>
+      </svg>
+      <div class="stack">
+        <dl class="spec">
+          <dt>Grid</dt><dd>48 by 48 units, tile corner radius 12.</dd>
+          <dt>Bracket</dt><dd>Strokes 8 units thick, outer corners radius 8, round ends. Spans 8 to 40 on both axes.</dd>
+          <dt>Pill</dt><dd>16 by 8 units, starting 4 units past the spine.</dd>
+          <dt>Clear space</dt><dd>8 units (one stroke) on every side of the tile. For the horizontal lockup, the same space measured from the tile's height: one sixth of it.</dd>
+          <dt>Minimum</dt><dd>Tile 16px on screen, 6mm in print. Horizontal lockup 24px tall, 10mm in print. Below that, use the tile alone.</dd>
+          <dt>Wordmark</dt><dd>Source Serif 4, 600, −0.01em, converted to outlines. Cap height centered on the tile.</dd>
+        </dl>
+        <div class="sizes pixel" style="margin-block-start: 1.5rem">
+          <figure><img src="png/favicon-16.png" width="16" height="16" alt="Tile at 16 pixels"><figcaption>16</figcaption></figure>
+          <figure><img src="png/favicon-32.png" width="32" height="32" alt="Tile at 32 pixels"><figcaption>32</figcaption></figure>
+          <figure><img src="png/favicon-48.png" width="48" height="48" alt="Tile at 48 pixels"><figcaption>48</figcaption></figure>
+          <figure><img src="svg/lockup.svg" style="block-size: 24px; inline-size: auto" alt="Lockup at 24 pixels tall"><figcaption>lockup 24</figcaption></figure>
+        </div>
+        <p class="small muted">Shown at actual pixel size, no smoothing, so you see what a browser tab shows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Icons and social</p>
+    <h2>Favicon, app icons and the share card</h2>
+    <div class="grid" style="--min: 20rem">
+      <div>
+        <div class="tabbar"><span class="tab on"><img src="svg/favicon.svg" alt="">Electric Dev</span><span class="tab"><img src="svg/concept-a-signal.svg" alt="" style="filter: grayscale(1); opacity: 0.4">Another tab</span></div>
+        <div class="urlbar">electricdev.net</div>
+        <p class="caption">Favicon in a browser tab. <code>svg/favicon.svg</code>, with <code>png/favicon.ico</code> (16, 32, 48) as the fallback.</p>
+      </div>
+      <div>
+        <div class="stage white" style="gap: 1.5rem; grid-auto-flow: column">
+          <img src="png/apple-touch-icon.png" width="90" height="90" alt="Apple touch icon" style="border-radius: 20px">
+          <img src="png/icon-512.png" width="90" height="90" alt="512 pixel app icon">
+        </div>
+        <p class="caption"><code>png/apple-touch-icon.png</code> (180, full bleed, iOS rounds it) and <code>png/icon-512.png</code> for the web manifest.</p>
+      </div>
+    </div>
+    <div style="margin-block-start: 2rem">
+      <img src="png/og-image.png" width="1200" height="630" alt="Social share card: Electric Dev mark and wordmark with electricdev.net on deep water" style="border-radius: 16px; inline-size: min(100%, 720px)">
+      <p class="caption">Share card, 1200 by 630, with tide rings from the mood board. No tagline yet. <code>png/og-image.png</code>, source <code>svg/og-image.svg</code></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">In context</p>
+    <h2>Header and footer</h2>
+    <p class="lede">The lockup at 32px tall in a white header, and the reverse lockup in a deep water footer. Link labels are placeholders.</p>
+    <div class="mock" style="margin-block-start: 2rem">
+      <div class="mock-header">
+        <img src="svg/lockup.svg" alt="Electric Dev">
+        <nav aria-label="Placeholder"><span>Link one</span><span>Link two</span><span>Link three</span></nav>
+        <span class="mock-btn">Button</span>
+      </div>
+      <div class="mock-body">Page content.</div>
+      <div class="mock-footer">
+        <img src="svg/lockup-reverse.svg" alt="Electric Dev">
+        <span>electricdev.net</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Rules</p>
+    <h2>Using the mark</h2>
+    <div class="grid" style="--min: 14rem">
+      <div class="rule"><div class="stage mist yes"><img src="svg/mark-tile.svg" width="72" alt=""></div><p>Use the tile on light backgrounds.</p></div>
+      <div class="rule"><div class="stage deep yes"><img src="svg/mark-reverse.svg" width="56" alt=""></div><p>Drop the tile on deep water and keep the amber pill.</p></div>
+      <div class="rule">
+        <div class="stage mist no"><svg viewBox="8 8 32 32" width="56" aria-hidden="true"><path fill="#0B2540" d="M16 8h20a4 4 0 0 1 0 8H16v16h20a4 4 0 0 1 0 8H16a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z"/><path fill="#FFB547" d="M24 20h8a4 4 0 0 1 0 8h-8a4 4 0 0 1 0-8z"/></svg></div>
+        <p>Put a bare amber pill on a light page. Amber on Mist is 1.65:1, so the pill fades. Use the tile.</p>
+      </div>
+      <div class="rule">
+        <div class="stage mist no"><svg viewBox="0 0 48 48" width="72" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#0B2540"/><path fill="#FFFFFF" d="M16 8h20a4 4 0 0 1 0 8H16v16h20a4 4 0 0 1 0 8H16a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z"/><path fill="#7FC8CF" d="M24 20h8a4 4 0 0 1 0 8h-8a4 4 0 0 1 0-8z"/></svg></div>
+        <p>Recolor the pill. It's always Beacon amber, or the single ink color in one-color versions.</p>
+      </div>
+      <div class="rule">
+        <div class="stage mist no"><svg viewBox="0 0 48 48" width="104" height="60" preserveAspectRatio="none" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#0B2540"/><path fill="#FFFFFF" d="M16 8h20a4 4 0 0 1 0 8H16v16h20a4 4 0 0 1 0 8H16a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z"/><path fill="#FFB547" d="M24 20h8a4 4 0 0 1 0 8h-8a4 4 0 0 1 0-8z"/></svg></div>
+        <p>Stretch, rotate, outline or add shadows and gradients.</p>
+      </div>
+      <div class="rule">
+        <div class="stage mist no"><span style="font-family: var(--mono); font-size: 1.35rem; white-space: nowrap">Electric Dev</span></div>
+        <p>Set the name in mono. Mono means the machine is talking, and the logo is the company.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">If the name changes</p>
+    <h2>Rebuilding the wordmark</h2>
+    <div class="stack" style="margin-block-start: 1rem">
+      <p>The mark is an E, so it suits any name that starts with E. For a name that doesn't, the tile, the bracket strokes and the amber pill stay the system, and the letter gets redrawn on the same grid. Concept A doesn't depend on a letter at all.</p>
+      <p>The wordmark is generated. Change <code>NAME</code> and <code>DOMAIN</code> at the top of <code>build.py</code>, then run the three steps in <code>README.md</code>: build, optimize with SVGO, export PNGs.</p>
+      <p><span class="badge quiet">Tagline</span> None yet. When there's approved copy, it goes under the stacked lockup in Plex Sans 400, Slate, at the domain's size.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Files</p>
+    <h2>What's in design/brand</h2>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>File</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>svg/lockup.svg</code></td><td>Primary horizontal lockup, full color, light backgrounds</td></tr>
+        <tr><td><code>svg/lockup-reverse.svg</code></td><td>Horizontal on deep water</td></tr>
+        <tr><td><code>svg/lockup-navy.svg</code>, <code>svg/lockup-white.svg</code></td><td>One-color versions</td></tr>
+        <tr><td><code>svg/lockup-stacked.svg</code>, <code>svg/lockup-stacked-reverse.svg</code></td><td>Stacked with the domain</td></tr>
+        <tr><td><code>svg/lockup-sans.svg</code></td><td>Alternate with a Plex Sans wordmark</td></tr>
+        <tr><td><code>svg/wordmark.svg</code>, <code>svg/domain.svg</code></td><td>Wordmark alone, domain mark</td></tr>
+        <tr><td><code>svg/mark-tile.svg</code></td><td>The mark, full color</td></tr>
+        <tr><td><code>svg/mark-reverse.svg</code>, <code>svg/mark-navy.svg</code>, <code>svg/mark-white.svg</code>, <code>svg/mark-tile-raised.svg</code></td><td>Mark without tile (deep water, one color) and the raised tile</td></tr>
+        <tr><td><code>svg/favicon.svg</code>, <code>png/favicon.ico</code>, <code>png/favicon-16/32/48.png</code></td><td>Favicons</td></tr>
+        <tr><td><code>png/apple-touch-icon.png</code>, <code>png/icon-512.png</code></td><td>Home screen and manifest icons</td></tr>
+        <tr><td><code>svg/og-image.svg</code>, <code>png/og-image.png</code></td><td>Social share card</td></tr>
+        <tr><td><code>png/lockup-1200.png</code></td><td>Raster lockup for tools that won't take SVG</td></tr>
+        <tr><td><code>svg/concept-a-signal.svg</code>, <code>svg/concept-c-rings.svg</code></td><td>The two concepts not chosen, for reference</td></tr>
+        <tr><td><code>build.py</code>, <code>svgo.config.mjs</code>, <code>export-png.js</code></td><td>Build, optimize and export</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="page">
+  <div class="wrap" style="display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap">
+    <img src="svg/lockup-reverse.svg" alt="Electric Dev" style="block-size: 28px; inline-size: auto">
+    <span>Electric Dev is a working name. Colors and fonts come from the Pacific Current style guide.</span>
+  </div>
+</footer>
+</body>
+</html>

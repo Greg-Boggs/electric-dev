@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electric Dev style guide: Pacific Current</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Styles for this guide page only. They are not part of the site. */
+@layer guide {
+  .guide-section { padding-block: var(--space-2xl); border-block-start: 1px solid var(--color-divider); }
+  .guide-section > .wrap > * + * { margin-block-start: var(--space-m); }
+  .guide-section > .wrap > h3 { margin-block-start: var(--space-xl); }
+  .rules { padding-inline-start: 1.2rem; display: grid; gap: var(--space-2xs); }
+  .toc { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+  .toc a { display: inline-block; padding: var(--space-3xs) var(--space-xs); border: 1px solid var(--color-border); border-radius: var(--radius-pill); color: var(--color-text); text-decoration: none; font-size: var(--text-sm); }
+  .toc a:hover { border-color: var(--color-text); }
+
+  .swatches { display: grid; gap: var(--space-s); grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); }
+  .swatch { margin: 0; background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-m); overflow: hidden; }
+  .swatch .chip { block-size: 4.5rem; background: var(--c); border-block-end: 1px solid var(--color-divider); }
+  .swatch figcaption { padding: var(--space-2xs) var(--space-xs); font-size: var(--text-sm); display: grid; }
+  .swatch code { color: var(--color-text-muted); font-size: var(--text-xs); }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--color-divider); border-radius: var(--radius-m); background: var(--color-surface); }
+  table { border-collapse: collapse; inline-size: 100%; font-size: var(--text-sm); }
+  caption { text-align: start; padding: var(--space-xs) var(--space-s); font-weight: var(--weight-strong); }
+  th, td { text-align: start; padding: var(--space-2xs) var(--space-s); border-block-start: 1px solid var(--color-divider); vertical-align: top; }
+  thead th { background: var(--color-page); }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pair { display: inline-block; padding: var(--space-3xs) var(--space-2xs); border-radius: var(--radius-s); border: 1px solid var(--color-divider); white-space: nowrap; }
+
+  .scale { display: grid; gap: var(--space-s); }
+  .scale > div { display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: var(--space-s); align-items: baseline; padding-block-end: var(--space-s); border-block-end: 1px solid var(--color-divider); }
+  .scale code { color: var(--color-text-muted); font-size: var(--text-xs); }
+  .scale p { max-inline-size: none; }
+  @media (width < 40rem) { .scale > div { grid-template-columns: 1fr; gap: var(--space-3xs); } }
+
+  .space-row { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-s); align-items: center; font-size: var(--text-sm); }
+  .space-row .bar { block-size: 0.75rem; inline-size: var(--w); background: var(--color-accent); border-radius: 2px; }
+  .tiles { display: grid; gap: var(--space-m); grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); }
+  .tile { background: var(--color-surface); border: 1px solid var(--color-divider); padding: var(--space-m); min-block-size: 6rem; font-size: var(--text-sm); display: grid; align-content: end; }
+
+  .demo { padding: var(--space-m); background: var(--color-surface); border: 1px dashed var(--color-border); border-radius: var(--radius-m); }
+  .demo.on-page { background: var(--color-page); }
+  .demo.flush { padding: 0; overflow: hidden; }
+  .two-col { display: grid; gap: var(--space-l); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); align-items: start; }
+  .do-dont { display: grid; gap: var(--space-m); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .do-dont > div { padding: var(--space-m); border-radius: var(--radius-m); background: var(--color-surface); border-block-start: 4px solid var(--color-accent); }
+  .do-dont > div.dont { border-block-start-color: var(--color-status-error); }
+  .do-dont h4 { font-family: var(--font-body); font-size: var(--text-base); margin-block-end: var(--space-2xs); }
+  .do-dont ul { padding-inline-start: 1.1rem; display: grid; gap: var(--space-3xs); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Electric Dev</a>
+    <nav aria-label="Style guide sections">
+      <ul>
+        <li><a href="#color" aria-current="page">Color</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#space">Space</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#voice">Voice</a></li>
+      </ul>
+    </nav>
+    <a class="btn small" href="#plans">See pricing</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="section">
+  <div class="wrap stack" style="--stack-space: var(--space-s)">
+    <p class="kicker">Step 2 of the site plan · Pacific Current</p>
+    <h1>Style guide</h1>
+    <p class="lede">Every color, size and component the Hugo build will use. The site styles live in two files next to this page: <code>tokens.css</code> holds the values, and <code>site.css</code> holds the base styles and components. This page is built from those files, so what you see here is what the site gets.</p>
+    <div class="callout highlight"><p class="title">All sample copy here is placeholder</p><p>Site copy hasn't been written yet. Text in [square brackets] only shows the length and shape of real copy. Nothing on this page is approved messaging, a promise, a price or a statistic, so don't reuse it on the site.</p></div>
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#principles">Principles</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#space">Space, radius, shadow, motion</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#voice">Voice and tone</a></li>
+      <li><a href="#build">Notes for the build</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== Principles ===================== -->
+<section class="guide-section" id="principles" aria-labelledby="principles-title">
+  <div class="wrap">
+    <h2 id="principles-title">Four rules that make it Pacific Current</h2>
+    <div class="grid-auto" style="--grid-min: 15rem">
+      <div class="card"><h3>Calm and accountable</h3><p>Navy, white and teal carry the page. Lots of room, plain layouts, prices and numbers shown plainly. The buyer is weighing risk, so nothing shouts.</p></div>
+      <div class="card"><h3>Amber is the signature</h3><p>Beacon amber marks the few things that matter most: live status, highlights and the <span class="badge">Most popular</span> badge. If everything is amber, nothing is.</p></div>
+      <div class="card"><h3>Mono means the machine is talking</h3><p>IBM Plex Mono is used only for what the AI technician or a system says: fix logs, ticket IDs, device names and live counts. People's words are never mono.</p></div>
+      <div class="card"><h3>Two weights</h3><p>Regular (400) and semibold (600), in every family. Nothing else. The browser is told not to fake a bold.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Color ===================== -->
+<section class="guide-section" id="color" aria-labelledby="color-title">
+  <div class="wrap">
+    <h2 id="color-title">Color</h2>
+    <p>The site is light only. Two components, the fix log and the footer, sit on a deep water surface. Every text pair below passes WCAG AA (4.5:1 for body text). Control borders pass the 3:1 non-text minimum. Ratios were computed from the hex values with the WCAG 2 formula.</p>
+
+    <h3>Palette</h3>
+    <div class="swatches">
+      <figure class="swatch" style="--c: var(--mist)"><div class="chip"></div><figcaption>Mist<code>--mist · #F5F8FB · page</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--white)"><div class="chip"></div><figcaption>White<code>--white · #FFFFFF · cards, fields</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--tide)"><div class="chip"></div><figcaption>Tide<code>--tide · #E8F1F4 · tinted panels</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--deep-water)"><div class="chip"></div><figcaption>Deep water<code>--deep-water · #0B2540 · text, dark bands</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--deep-water-2)"><div class="chip"></div><figcaption>Deep water raised<code>--deep-water-2 · #12304F</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--slate)"><div class="chip"></div><figcaption>Slate<code>--slate · #475A70 · muted text</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--fog)"><div class="chip"></div><figcaption>Fog<code>--fog · #A9B8CA · muted on dark</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--rock)"><div class="chip"></div><figcaption>Rock<code>--rock · #748499 · control borders</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--sand)"><div class="chip"></div><figcaption>Sand<code>--sand · #D9E1EA · dividers</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--current)"><div class="chip"></div><figcaption>Current<code>--current · #00707A · accent, links</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--current-deep)"><div class="chip"></div><figcaption>Current deep<code>--current-deep · #005A62 · hover, focus</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--current-tint)"><div class="chip"></div><figcaption>Current tint<code>--current-tint · #E6F2F3 · info</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--shallows)"><div class="chip"></div><figcaption>Shallows<code>--shallows · #7FC8CF · links on dark</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--beacon)"><div class="chip"></div><figcaption>Beacon<code>--beacon · #FFB547 · signature fill</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--beacon-ink)"><div class="chip"></div><figcaption>Beacon ink<code>--beacon-ink · #8A5300 · amber text</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--beacon-tint)"><div class="chip"></div><figcaption>Beacon tint<code>--beacon-tint · #FFF4E0 · highlight</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--kelp)"><div class="chip"></div><figcaption>Kelp<code>--kelp · #86EFAC · "fixed" on dark</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--ember)"><div class="chip"></div><figcaption>Ember<code>--ember · #B42318 · errors</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--foam)"><div class="chip"></div><figcaption>Foam<code>--foam · #E6EAF0 · text on dark</code></figcaption></figure>
+      <figure class="swatch" style="--c: var(--channel)"><div class="chip"></div><figcaption>Channel<code>--channel · #4A6684 · borders on dark</code></figcaption></figure>
+    </div>
+
+    <h3>Approved pairs</h3>
+    <p>Use only these. If a design needs a pair that isn't listed, check its contrast and add it here first.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Text and control pairs on light surfaces</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Foreground token</th><th scope="col">Background</th><th scope="col">Ratio</th><th scope="col">Use</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pair" style="background:var(--mist);color:var(--deep-water)">Aa</span></td><td><code>--color-text</code></td><td>Mist</td><td class="num">14.6:1</td><td>Body text, headings</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);color:var(--deep-water)">Aa</span></td><td><code>--color-text</code></td><td>White</td><td class="num">15.5:1</td><td>Text in cards and fields</td></tr>
+          <tr><td><span class="pair" style="background:var(--mist);color:var(--slate)">Aa</span></td><td><code>--color-text-muted</code></td><td>Mist</td><td class="num">6.7:1</td><td>Hints, captions, secondary copy</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);color:var(--slate)">Aa</span></td><td><code>--color-text-muted</code></td><td>White</td><td class="num">7.1:1</td><td>Same, in cards</td></tr>
+          <tr><td><span class="pair" style="background:var(--tide);color:var(--slate)">Aa</span></td><td><code>--color-text-muted</code></td><td>Tide</td><td class="num">6.2:1</td><td>Muted text on the hero wash</td></tr>
+          <tr><td><span class="pair" style="background:var(--mist);color:var(--current)">Aa</span></td><td><code>--color-link</code></td><td>Mist</td><td class="num">5.5:1</td><td>Links on the page</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);color:var(--current)">Aa</span></td><td><code>--color-link</code></td><td>White</td><td class="num">5.8:1</td><td>Links in cards</td></tr>
+          <tr><td><span class="pair" style="background:var(--current);color:var(--white)">Aa</span></td><td><code>--color-on-accent</code></td><td>Current</td><td class="num">5.8:1</td><td>Primary button</td></tr>
+          <tr><td><span class="pair" style="background:var(--current-deep);color:var(--white)">Aa</span></td><td><code>--color-on-accent</code></td><td>Current deep</td><td class="num">8.0:1</td><td>Primary button hover</td></tr>
+          <tr><td><span class="pair" style="background:var(--beacon);color:var(--deep-water)">Aa</span></td><td><code>--color-on-signature</code></td><td>Beacon</td><td class="num">8.8:1</td><td>Badges, "Most popular"</td></tr>
+          <tr><td><span class="pair" style="background:var(--beacon-tint);color:var(--deep-water)">Aa</span></td><td><code>--color-text</code></td><td>Beacon tint</td><td class="num">14.2:1</td><td>Highlighted text, highlight callout</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);color:var(--beacon-ink)">Aa</span></td><td><code>--color-signature-text</code></td><td>White</td><td class="num">6.3:1</td><td>Kickers, "working" status</td></tr>
+          <tr><td><span class="pair" style="background:var(--mist);color:var(--beacon-ink)">Aa</span></td><td><code>--color-signature-text</code></td><td>Mist</td><td class="num">5.9:1</td><td>Same, on the page</td></tr>
+          <tr><td><span class="pair" style="background:var(--current-tint);color:var(--deep-water)">Aa</span></td><td><code>--color-text</code></td><td>Current tint</td><td class="num">13.6:1</td><td>Info callout</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);color:var(--ember)">Aa</span></td><td><code>--color-status-error</code></td><td>White</td><td class="num">6.6:1</td><td>Field error text</td></tr>
+          <tr><td><span class="pair" style="background:var(--ember-tint);color:var(--ember)">Aa</span></td><td><code>--color-status-error</code></td><td>Ember tint</td><td class="num">5.8:1</td><td>Error callout</td></tr>
+          <tr><td><span class="pair" style="background:var(--white);border:2px solid var(--rock);color:var(--deep-water)">Field</span></td><td><code>--color-border</code></td><td>White / Mist</td><td class="num">3.8 / 3.6:1</td><td>Field and secondary button borders (non-text)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Pairs on deep water (fix log, footer)</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Foreground token</th><th scope="col">Background</th><th scope="col">Ratio</th><th scope="col">Use</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pair" style="background:var(--deep-water);color:var(--foam)">Aa</span></td><td><code>--color-on-inverse</code></td><td>Deep water</td><td class="num">12.9:1</td><td>Text</td></tr>
+          <tr><td><span class="pair" style="background:var(--deep-water-2);color:var(--foam)">Aa</span></td><td><code>--color-on-inverse</code></td><td>Deep water raised</td><td class="num">11.1:1</td><td>Text on the log's title bar</td></tr>
+          <tr><td><span class="pair" style="background:var(--deep-water);color:var(--fog)">Aa</span></td><td><code>--color-on-inverse-muted</code></td><td>Deep water</td><td class="num">7.7:1</td><td>Step labels, legal text</td></tr>
+          <tr><td><span class="pair" style="background:var(--deep-water);color:var(--shallows)">Aa</span></td><td><code>--color-inverse-link</code></td><td>Deep water</td><td class="num">8.2:1</td><td>Footer links</td></tr>
+          <tr><td><span class="pair" style="background:var(--deep-water);color:var(--beacon)">Aa</span></td><td><code>--color-inverse-signature</code></td><td>Deep water</td><td class="num">8.8:1</td><td>Human approval step</td></tr>
+          <tr><td><span class="pair" style="background:var(--deep-water);color:var(--kelp)">Aa</span></td><td><code>--color-inverse-ok</code></td><td>Deep water</td><td class="num">11.1:1</td><td>"fixed"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Where amber goes</h3>
+    <div class="do-dont">
+      <div>
+        <h4>Use Beacon for</h4>
+        <ul>
+          <li>The <span class="badge">Most popular</span> badge and the featured plan's frame</li>
+          <li>Live status that is in progress: <span class="status working">[n] items in progress</span></li>
+          <li>Highlights in copy: <mark>[the one phrase that matters most]</mark></li>
+          <li>The human approval line in the fix log</li>
+          <li>The current page marker in the nav</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Set amber text on a light background. Use <code>--beacon-ink</code> instead.</li>
+          <li>Make an amber button. Primary actions are always Current teal.</li>
+          <li>Use more than one amber highlight per screen of copy.</li>
+          <li>Use Shallows or Beacon fills behind body text on light surfaces.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Type ===================== -->
+<section class="guide-section" id="type" aria-labelledby="type-title">
+  <div class="wrap">
+    <h2 id="type-title">Type</h2>
+    <p>Three self-hosted OFL families, two weights. Source Serif 4 gives headlines an established, grown-up voice. IBM Plex Sans keeps body copy and tables plain. IBM Plex Mono is reserved for the machine.</p>
+
+    <div class="two-col">
+      <div class="card">
+        <p class="kicker">Headings</p>
+        <p class="display" style="font-size: var(--text-h1)">Source Serif 4</p>
+        <p>Semibold 600 for every heading and the price. Regular 400 is allowed for long pull quotes.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">Body and interface</p>
+        <p style="font-size: var(--text-h3)">IBM Plex Sans</p>
+        <p>Regular 400 for reading, semibold 600 for labels, buttons and <strong>emphasis</strong>.</p>
+      </div>
+      <div class="card">
+        <p class="kicker">Machine voice</p>
+        <p class="machine" style="font-size: var(--text-h4)">IBM Plex Mono</p>
+        <p>Regular 400 only. A ticket ID <code>[id]</code>, a device name <code>[device-name]</code>, or a live count <span class="machine">[n]</span>.</p>
+      </div>
+    </div>
+
+    <h3>Scale</h3>
+    <p>Headline sizes grow with the screen between a fixed minimum and maximum. Body text stays put so it never gets smaller than the reader's own setting.</p>
+    <div class="scale">
+      <div><code>--text-display<br>40 to 76px</code><p class="display">[Hero headline]</p></div>
+      <div><code>--text-h1<br>36 to 60px</code><p style="font: var(--weight-strong) var(--text-h1)/var(--leading-tight) var(--font-display)">[Page title, a few words]</p></div>
+      <div><code>--text-h2<br>28 to 44px</code><p style="font: var(--weight-strong) var(--text-h2)/var(--leading-snug) var(--font-display)">[Section heading]</p></div>
+      <div><code>--text-h3<br>22 to 30px</code><p style="font: var(--weight-strong) var(--text-h3)/var(--leading-snug) var(--font-display)">[Subsection heading]</p></div>
+      <div><code>--text-h4<br>20 to 23px</code><p style="font: var(--weight-strong) var(--text-h4)/var(--leading-snug) var(--font-display)">[Card or minor heading]</p></div>
+      <div><code>--text-lg<br>18 to 21px</code><p class="lede">A lede paragraph sets up the page in one or two sentences.</p></div>
+      <div><code>--text-base<br>17px</code><p>Body copy. Lines stop at about 66 characters so they stay easy to follow from one line to the next.</p></div>
+      <div><code>--text-sm<br>14px</code><p style="font-size: var(--text-sm)">Hints, badges, meta lines and table cells.</p></div>
+      <div><code>--text-xs<br>13px</code><p style="font-size: var(--text-xs)">Legal lines and swatch captions only. Never for anything a buyer has to read to decide.</p></div>
+    </div>
+
+    <h3>Rules</h3>
+    <ul class="rules">
+      <li>Sentence case everywhere, including buttons and headings. No all-caps labels.</li>
+      <li>Line height 1.6 for body, 1.25 for headings, 1.1 for the hero and page titles.</li>
+      <li>Prices and tables use tabular figures so columns line up.</li>
+      <li>Headlines balance their line breaks. Paragraphs avoid one-word last lines.</li>
+      <li>Fallback fonts are size-matched to the web font's x-height, so text doesn't jump when the font arrives.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== Space ===================== -->
+<section class="guide-section" id="space" aria-labelledby="space-title">
+  <div class="wrap">
+    <h2 id="space-title">Space, radius, shadow and motion</h2>
+
+    <h3>Space</h3>
+    <p>A 4px rhythm, written in rem so it scales with the reader's text size. Section padding and page gutters grow with the screen.</p>
+    <div class="stack" style="--stack-space: var(--space-2xs)">
+      <div class="space-row"><code>--space-3xs · 4</code><span class="bar" style="--w: var(--space-3xs)"></span></div>
+      <div class="space-row"><code>--space-2xs · 8</code><span class="bar" style="--w: var(--space-2xs)"></span></div>
+      <div class="space-row"><code>--space-xs · 12</code><span class="bar" style="--w: var(--space-xs)"></span></div>
+      <div class="space-row"><code>--space-s · 16</code><span class="bar" style="--w: var(--space-s)"></span></div>
+      <div class="space-row"><code>--space-m · 24</code><span class="bar" style="--w: var(--space-m)"></span></div>
+      <div class="space-row"><code>--space-l · 32</code><span class="bar" style="--w: var(--space-l)"></span></div>
+      <div class="space-row"><code>--space-xl · 48</code><span class="bar" style="--w: var(--space-xl)"></span></div>
+      <div class="space-row"><code>--space-2xl · 64</code><span class="bar" style="--w: var(--space-2xl)"></span></div>
+      <div class="space-row"><code>--space-3xl · 96</code><span class="bar" style="--w: var(--space-3xl)"></span></div>
+      <div class="space-row"><code>--space-section</code><span class="bar" style="--w: var(--space-section)"></span></div>
+    </div>
+
+    <h3>Radius and shadow</h3>
+    <div class="tiles">
+      <div class="tile" style="border-radius: var(--radius-s)"><code>--radius-s · 6px</code>badges, callouts</div>
+      <div class="tile" style="border-radius: var(--radius-m)"><code>--radius-m · 10px</code>buttons, fields, cards</div>
+      <div class="tile" style="border-radius: var(--radius-l)"><code>--radius-l · 16px</code>hero, plan cards</div>
+      <div class="tile" style="border-radius: var(--radius-m); box-shadow: var(--shadow-s)"><code>--shadow-s</code>resting cards</div>
+      <div class="tile" style="border-radius: var(--radius-m); box-shadow: var(--shadow-m)"><code>--shadow-m</code>hovered cards, featured plan</div>
+      <div class="tile" style="border-radius: var(--radius-m); box-shadow: var(--shadow-l)"><code>--shadow-l</code>the fix log only</div>
+    </div>
+
+    <h3>Motion</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>--duration-fast</code></td><td class="num">120ms</td><td>Hover and press on buttons, links and fields</td></tr>
+          <tr><td><code>--duration-base</code></td><td class="num">200ms</td><td>Card hover, disclosures</td></tr>
+          <tr><td><code>--duration-slow</code></td><td class="num">320ms</td><td>Each fix log line appearing</td></tr>
+          <tr><td><code>--ease-standard</code></td><td>cubic-bezier(0.2, 0, 0, 1)</td><td>Everything that enters or changes</td></tr>
+          <tr><td><code>--ease-exit</code></td><td>cubic-bezier(0.3, 0, 1, 1)</td><td>Things leaving the screen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Motion is small and purposeful: nothing bounces, nothing parallaxes. When the reader asks for reduced motion, every duration drops to zero and the status pulse stops.</p>
+  </div>
+</section>
+
+<!-- ===================== Components ===================== -->
+<section class="guide-section" id="components" aria-labelledby="components-title">
+  <div class="wrap">
+    <h2 id="components-title">Components</h2>
+
+    <h3 id="buttons">Buttons and links</h3>
+    <div class="demo stack">
+      <div class="cluster">
+        <a class="btn" href="#plans">See pricing</a>
+        <a class="btn secondary" href="#form">Get a proposal</a>
+        <a class="btn quiet" href="#fixlog">How it works</a>
+        <button class="btn" type="button" disabled>Sending…</button>
+        <a class="btn small" href="#plans">Small</a>
+      </div>
+      <p>Links in running text are Current teal and always underlined, like this <a href="#voice">link to the voice notes</a>. The underline thickens on hover.</p>
+    </div>
+    <ul class="rules">
+      <li>One primary button per view. Use secondary for the second action, quiet for a third.</li>
+      <li>Labels say what happens: "Get a proposal", not "Submit" or "Learn more".</li>
+      <li>Buttons are at least 44px tall. Small buttons are 36px and only go in tight spots like the site header. All buttons keep a real border, so they stay visible in Windows high contrast mode.</li>
+    </ul>
+
+    <h3 id="badges">Badges, status and highlights</h3>
+    <div class="demo stack">
+      <div class="cluster">
+        <span class="badge">Most popular</span>
+        <span class="badge neutral">New</span>
+      </div>
+      <div class="cluster" style="--cluster-space: var(--space-l)">
+        <span class="status">[n] devices healthy</span>
+        <span class="status working">[n] items in progress</span>
+        <span class="status error">[n] need attention</span>
+      </div>
+      <p>Highlights use the mark style: <mark>[the one phrase on this screen that matters most]</mark>.</p>
+    </div>
+    <p>Status always pairs the dot with words. Color is never the only signal. Status text is mono because it's the system reporting.</p>
+
+    <h3 id="form">Form fields</h3>
+    <div class="demo two-col">
+      <form class="stack" style="--stack-space: var(--space-m)" action="#" onsubmit="return false">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Work email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint">
+          <span class="hint" id="f-email-hint">[Hint text, one short line]</span>
+          <span class="error-text" id="f-email-err">Enter an email address like name@company.com.</span>
+        </div>
+        <div class="field">
+          <label for="f-size">Company size</label>
+          <select id="f-size" name="size">
+            <option>10 to 49 employees</option>
+            <option>50 to 199 employees</option>
+            <option>200 to 499 employees</option>
+            <option>500 to 1,000 employees</option>
+          </select>
+        </div>
+      </form>
+      <div class="stack" style="--stack-space: var(--space-m)">
+        <div class="field">
+          <label for="f-msg">[Open question for the reader]</label>
+          <textarea id="f-msg" name="message"></textarea>
+        </div>
+        <label class="check"><input type="checkbox" name="call"> <span>I'd rather talk on a call</span></label>
+        <button class="btn" type="button">Get a proposal</button>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Labels sit above the field and stay visible. Placeholders are never the label.</li>
+      <li>Errors appear after the reader leaves a field, not while they type, and the message says how to fix it. Try typing "dana" in the email field and tabbing out.</li>
+      <li>Every field has the right <code>autocomplete</code> value so browsers can fill it.</li>
+      <li>A short script keeps screen readers in step: it sets <code>aria-invalid</code>, links the error message only while it shows, and announces it once when the reader leaves the field.</li>
+    </ul>
+
+    <h3 id="cards">Cards</h3>
+    <div class="grid-auto">
+      <article class="card">
+        <p class="kicker">[Kicker]</p>
+        <h3><a class="card-link" href="#cards">[Card title, three to six words]</a></h3>
+        <p>[One or two sentences that say what's behind the link.]</p>
+      </article>
+      <article class="card">
+        <p class="kicker">[Kicker]</p>
+        <h3><a class="card-link" href="#cards">[Card title]</a></h3>
+        <p>[Supporting text. Cards with different lengths of text still start their content on the same line.]</p>
+      </article>
+      <article class="card">
+        <p class="kicker">[Kicker]</p>
+        <h3><a class="card-link" href="#cards">[A longer card title that wraps to two lines]</a></h3>
+        <p>[One short sentence.]</p>
+      </article>
+    </div>
+    <p>A card with one destination puts the link on its heading, and the whole card becomes clickable. The heading is teal so the card reads as a link without hover, which touch screens don't have.</p>
+
+    <h3 id="plans">Plan cards</h3>
+    <div class="plans">
+      <article class="plan">
+        <h3>[Plan name]</h3>
+        <p class="price">$00 <small>/ [unit] / month</small></p>
+        <p class="note">[Who this plan is for, one line]</p>
+        <ul>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+        </ul>
+        <a class="btn secondary" href="#form">[Action]</a>
+      </article>
+      <article class="plan featured">
+        <p><span class="badge">[Badge]</span></p>
+        <h3>[Plan name]</h3>
+        <p class="price">$000 <small>/ [unit] / month</small></p>
+        <p class="note">[Who this plan is for, one line]</p>
+        <ul>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+        </ul>
+        <a class="btn" href="#form">[Action]</a>
+      </article>
+      <article class="plan">
+        <h3>[A longer plan name that wraps]</h3>
+        <p class="price">$000 <small>/ [unit] / month</small></p>
+        <p class="note">[Who this plan is for, one line]</p>
+        <ul>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+          <li>[What's included]</li>
+        </ul>
+        <a class="btn secondary" href="#form">[Action]</a>
+      </article>
+    </div>
+    <p class="muted"><small>Plan names, prices, units and features are placeholders. Pricing hasn't been set.</small></p>
+    <p>Only the featured plan gets the amber frame, the badge and the primary button. Its border is drawn with a shadow, so it's the same size as its neighbors and nothing shifts.</p>
+
+    <h3 id="callouts">Callouts</h3>
+    <div class="stack">
+      <div class="callout"><p class="title">[Info callout title]</p><p>[A sentence or two of supporting information.]</p></div>
+      <div class="callout highlight"><p class="title">[Highlight callout title]</p><p>[The one point on this page the reader shouldn't miss.]</p></div>
+      <div class="callout error"><p class="title">[Error title: what went wrong]</p><p>[What the reader can do next.]</p></div>
+    </div>
+    <p>Info is the default. Use highlight once per page at most. Error callouts that appear after an action need <code>role="alert"</code> so screen readers announce them.</p>
+
+    <h3 id="fixlog">Fix log: the signature element</h3>
+    <p>The fix log shows the AI technician working a real ticket, line by line. It's the site's best proof, so it appears on the home page, every service page and the how-it-works page. It is always dark and always mono. The human approval line is always amber, so the reader sees where a person stepped in.</p>
+    <div class="fixlog-wrap">
+      <figure class="fixlog play" aria-labelledby="fixlog-cap">
+        <div class="bar"><span>ticket [id] · [device-name]</span><span class="ok">[status]</span></div>
+        <ol>
+          <li style="--i:0"><span class="step">[step]</span><span>[the problem, as the person reported it]</span></li>
+          <li style="--i:1"><span class="step">[step]</span><span>[what the system checked]</span></li>
+          <li style="--i:2"><span class="step">[step]</span><span>[what it found]</span></li>
+          <li style="--i:3"><span class="step">[step]</span><span>[the change it plans to make]</span></li>
+          <li class="human" style="--i:4"><span class="step">[step]</span><span>[the line where a person stepped in]</span></li>
+          <li class="done" style="--i:5"><span class="step">[step]</span><span>[the result]</span></li>
+        </ol>
+        <figcaption id="fixlog-cap">Placeholder fix log. Step names, wording and timing come from real tickets once the service runs.</figcaption>
+      </figure>
+    </div>
+    <ul class="rules">
+      <li>Markup is an ordered list, so screen readers announce each step in order.</li>
+      <li>Lines fade in one after another only if the reader allows motion. Otherwise they're all there at once.</li>
+      <li>On narrow screens the step label stacks above its line.</li>
+      <li>Logs on the live site must be real, anonymized tickets with permission. Never invent one and present it as real.</li>
+    </ul>
+
+    <h3 id="nav">Navigation</h3>
+    <p>The header at the top of this page is the site header: brand, up to six links and one primary button. It stays at the top while scrolling. The current page gets an amber underline. On small screens the links wrap under the brand. The wireframes step will decide whether phones get a menu button instead.</p>
+
+    <h3 id="hero">Hero panel</h3>
+    <div class="hero stack" style="--stack-space: var(--space-m)">
+      <p class="display">[Hero headline, about eight words long]</p>
+      <p class="lede" style="color: var(--color-text)">[One or two sentences that support the headline. About as long as this placeholder, so the layout can be judged at a realistic length.]</p>
+      <div class="cluster"><a class="btn" href="#plans">[Primary action]</a><a class="btn secondary" href="#form">[Secondary action]</a></div>
+      <p><span class="status">[Live system line, if there is one]</span></p>
+    </div>
+
+    <h3 id="footer-demo">Footer</h3>
+    <p>The deep water band at the bottom of this page is the site footer.</p>
+  </div>
+</section>
+
+<!-- ===================== Voice ===================== -->
+<section class="guide-section" id="voice" aria-labelledby="voice-title">
+  <div class="wrap">
+    <h2 id="voice-title">Voice and tone</h2>
+    <p>We sound like a senior IT lead explaining things to a COO: calm, specific and on the record. The reader is weighing risk, so every sentence should make the decision feel safer.</p>
+    <div class="do-dont">
+      <div>
+        <h4>Do</h4>
+        <ul>
+          <li>Say who does what: name whether the system or a person acts, and who approves.</li>
+          <li>Use exact numbers, and say where they came from.</li>
+          <li>Write for a company of 10 people and of 1,000. Avoid jargon that only one of them uses.</li>
+          <li>Use "you" and "your team". Use "we" for the company.</li>
+          <li>Put the price and the limits in plain sight.</li>
+          <li>Keep sentences short. One idea each.</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Use hype words: revolutionary, seamless, cutting-edge, next-gen, AI-powered.</li>
+          <li>Promise the AI never makes mistakes. Say what catches them.</li>
+          <li>Use fear to sell security.</li>
+          <li>Write "contact us for pricing".</li>
+          <li>Put people's words in mono, or the machine's words in the serif.</li>
+          <li>Publish a market number without a citation.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption>Tone by place</caption>
+        <thead><tr><th scope="col">Where</th><th scope="col">Tone</th><th scope="col">What a line should do</th></tr></thead>
+        <tbody>
+          <tr><td>Hero</td><td>Confident, concrete</td><td>Say what the reader gets, in one short sentence they could repeat to a colleague.</td></tr>
+          <tr><td>Pricing</td><td>Plain, complete</td><td>Give the price, the unit it's charged by, and what is and isn't included.</td></tr>
+          <tr><td>Security pages</td><td>Precise, sober</td><td>State what the system can do, what it can't, and who checks it.</td></tr>
+          <tr><td>Fix log</td><td>Terse, factual, lowercase</td><td>Report one step per line, the way a system log would.</td></tr>
+          <tr><td>Errors</td><td>Calm, helpful</td><td>Say what went wrong and what the reader can do next.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Build ===================== -->
+<section class="guide-section" id="build" aria-labelledby="build-title">
+  <div class="wrap">
+    <h2 id="build-title">Notes for the build</h2>
+    <ul class="rules">
+      <li>Copy <code>tokens.css</code> and <code>site.css</code> into the Hugo <code>assets/css/</code> folder and the three font files into <code>static/fonts/</code>. Update the <code>url()</code> paths in <code>tokens.css</code> to match.</li>
+      <li>Preload only Plex Sans and Source Serif. Plex Mono can load when it's needed.</li>
+      <li>Components only use semantic tokens (<code>--color-text</code>, not <code>--deep-water</code>). The palette names exist so the semantic layer has something to point at.</li>
+      <li>Styles are in cascade layers: reset, base, layout, components, utilities. Page-specific styles go in a later layer, never with <code>!important</code>.</li>
+      <li>No framework. The only JavaScript is the form error script at the bottom of this page, which the contact form needs too.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div><h2>Services</h2><ul><li><a href="#cards">Help desk</a></li><li><a href="#cards">Security</a></li><li><a href="#cards">Onboarding</a></li></ul></div>
+      <div><h2>Pricing</h2><ul><li><a href="#plans">Plans</a></li><li><a href="#plans">Compare plans</a></li><li><a href="#form">Get a proposal</a></li></ul></div>
+      <div><h2>Trust</h2><ul><li><a href="#cards">What the AI can touch</a></li><li><a href="#cards">Data handling</a></li><li><a href="#cards">Accessibility</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="#top">About</a></li><li><a href="#top">Contact</a></li></ul></div>
+    </div>
+    <p class="legal"><span class="status">[System status line]</span><br>© 2026 Electric Dev. Sample footer for the style guide; link labels are placeholders.</p>
+  </div>
+</footer>
+
+<p class="visually-hidden" aria-live="polite" id="form-announcer"></p>
+<script>
+// Keep screen readers in step with :user-invalid. The error message joins
+// aria-describedby only while it shows, and is announced once on leaving the field.
+const announcer = document.getElementById('form-announcer');
+for (const field of document.querySelectorAll('.field')) {
+  const control = field.querySelector('input, select, textarea');
+  const error = field.querySelector('.error-text');
+  if (!control || !error) continue;
+  const base = control.getAttribute('aria-describedby') || '';
+  control.setAttribute('aria-invalid', 'false');
+  const sync = (event) => {
+    const invalid = control.matches(':user-invalid');
+    const wasInvalid = control.getAttribute('aria-invalid') === 'true';
+    control.setAttribute('aria-invalid', String(invalid));
+    control.setAttribute('aria-describedby', invalid ? `${base} ${error.id}`.trim() : base);
+    if (invalid && !wasInvalid && event.type !== 'input') announcer.textContent = error.textContent;
+    if (!invalid) announcer.textContent = '';
+  };
+  for (const type of ['blur', 'change', 'input']) control.addEventListener(type, sync);
+}
+</script>
+
+</body>
+</html>

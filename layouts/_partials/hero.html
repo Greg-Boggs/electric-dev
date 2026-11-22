@@ -1,0 +1,19 @@
+{{- $h := .Params.hero | default dict }}
+{{- $heading := $h.heading | default .Title }}
+<section class="section page-hero"><div class="wrap">
+  <div class="hero{{ if $h.art }} hero-split{{ end }}">
+    <div class="stack" style="--stack-space: var(--space-m)">
+      {{ with $h.kicker }}<p class="kicker">{{ . }}</p>{{ end }}
+      <h1{{ if $.IsHome }} class="display"{{ end }}>{{ $heading }}</h1>
+      {{ with $h.lede }}<p class="lede">{{ . }}</p>{{ end }}
+      {{- if or $h.primary $h.secondary }}
+      <p class="cluster actions">
+        {{ with $h.primary }}<a class="btn" href="{{ .url }}">{{ .label }}</a>{{ end }}
+        {{ with $h.secondary }}<a class="btn secondary" href="{{ .url }}">{{ .label }}</a>{{ end }}
+      </p>
+      {{- end }}
+      {{ with $h.note }}<p class="hero-note">{{ . }}</p>{{ end }}
+    </div>
+    {{ if $h.art }}<div class="hero-art" aria-hidden="true">{{ partial "art.html" . }}</div>{{ end }}
+  </div>
+</div></section>

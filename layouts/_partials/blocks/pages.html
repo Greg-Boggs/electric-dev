@@ -1,0 +1,8 @@
+{{/* Cards for the pages in a section, e.g. section: services. Optional limit and exclude (a page path). */}}
+{{- $s := site.GetPage .section }}
+{{- $pages := $s.Pages.ByWeight }}
+{{- with .exclude }}{{ $pages = where $pages "RelPermalink" "ne" . }}{{ end }}
+{{- with .limit }}{{ $pages = first . $pages }}{{ end }}
+{{- $items := slice }}
+{{- range $pages }}{{ $items = $items | append (dict "title" .LinkTitle "text" (.Params.summary | default .Description) "url" .RelPermalink "kicker" .Params.kicker) }}{{ end }}
+{{- partial "blocks/cards.html" (merge . (dict "items" $items)) }}

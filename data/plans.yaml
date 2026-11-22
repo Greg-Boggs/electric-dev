@@ -1,0 +1,48 @@
+# Plan cards, pricing table and calculator read from here.
+# Source: docs/research-report-portland-msp-pricing.md (recommended structure), which
+# docs/site-spec-small-business-v1.md repeats. Business and Secure are ranges there
+# ($155 to $165, $210 to $230), so they show as "from" prices until exact figures are set.
+minimumUsers: 10
+plans:
+  - key: essentials
+    name: Essentials
+    price: 115
+    from: false
+    unit: per user / month
+    for: Remote support for simple, mostly cloud-based offices.
+    includes:
+      - Remote help desk, 8am to 6pm, Monday to Friday
+      - Endpoint protection (EDR) and patching
+      - Microsoft 365 administration
+      - Device monitoring
+    action: Get a proposal
+  - key: business
+    name: Business
+    price: 155
+    from: true
+    unit: per user / month
+    for: IT fully handled, with on-site help in the Portland area.
+    includes:
+      - Everything in Essentials
+      - On-site support in the Portland metro area
+      - Email security
+      - Backup for devices and Microsoft 365
+      - Security awareness training
+      - Quarterly IT planning reviews
+    action: Get a proposal
+    featured: true
+    badge: Most popular
+  - key: secure
+    name: Secure
+    price: 210
+    from: true
+    unit: per user / month
+    for: Regulated or higher-risk companies that need round-the-clock security.
+    includes:
+      - Everything in Business
+      - 24/7 security monitoring and response
+      - Identity threat detection
+      - Security event logging (SIEM)
+      - Compliance documentation support
+      - Out-of-hours support included
+    action: Get a proposal
