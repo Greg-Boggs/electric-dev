@@ -11,8 +11,8 @@ hero:
     label: See pricing
     url: /pricing/
   image:
-    src: home-team.jpg
-    alt: Four coworkers gathered around a laptop at a meeting table, smiling at something on screen
+    src: home-support.png
+    alt: Illustration of two colleagues seated side by side, collaborating at a laptop
   kicker: Managed IT services in Portland
 blocks:
 - type: pages

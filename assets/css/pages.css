@@ -183,6 +183,15 @@
   }
   @media (width < 56rem) { .hero-photo img { aspect-ratio: 16 / 9; } }
 
+  /* Give the homepage illustration room and preserve the full scene on mobile. */
+  .home-hero {
+    @media (width >= 56rem) {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-l);
+    }
+    .hero-photo img { aspect-ratio: 4 / 3; }
+  }
+
   /* Price preview card beside a section. */
   .price-card { align-self: center; gap: var(--space-xs); border-block-start: 4px solid var(--beacon); }
   .price-card .price { font-size: var(--text-h3); font-weight: 700; line-height: 1.1; }

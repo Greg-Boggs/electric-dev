@@ -2,6 +2,8 @@
   // Cloudflare Workers static site. Build with `npm run build`, deploy with `npx wrangler deploy`.
   "name": "electric-dev",
   "compatibility_date": "2026-11-01",
+  // Required by `wrangler preview`; static assets use the top-level settings.
+  "previews": {},
   "assets": {
     "directory": "./public",
     // Serve public/404.html for unknown paths.
