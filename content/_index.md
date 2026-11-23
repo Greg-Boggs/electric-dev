@@ -12,7 +12,7 @@ hero:
     url: /pricing/
   image:
     src: home-support.png
-    alt: Illustration of an IT specialist helping a colleague at a laptop
+    alt: Illustration of two colleagues seated side by side, collaborating at a laptop
   kicker: Managed IT services in Portland
 blocks:
 - type: pages
