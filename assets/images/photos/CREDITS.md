@@ -1,12 +1,14 @@
 # Photo credits
 
+`home-support.png` is an AI-generated editorial illustration made with OpenAI's built-in image generation tool for this site. It depicts fictional people, not Electric Dev staff or clients. Hugo generates responsive WebP versions at build time.
+
 All photos are from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license): free for commercial use, no permission or attribution required. We credit the photographers here anyway.
 
 Originals were resized to 1600px and stripped of metadata. Hugo makes the WebP sizes at build time (`layouts/_partials/photo.html`). To swap a photo, replace the file here with one of the same name, or point a page's `image.src` at a new file and update its `alt`.
 
 | File | Used on | Photographer | Source |
 |---|---|---|---|
-| home-team.jpg | Home hero | [Cherrydeck](https://unsplash.com/@cherrydeck) | [unsplash.com/photos/rMILC1PIwM0](https://unsplash.com/photos/rMILC1PIwM0) |
+| home-team.jpg | Previous home hero (retained source) | [Cherrydeck](https://unsplash.com/@cherrydeck) | [unsplash.com/photos/rMILC1PIwM0](https://unsplash.com/photos/rMILC1PIwM0) |
 | services-pairing.jpg | Services: Managed IT panel | [Disruptxn](https://unsplash.com/@disruptxn) | [unsplash.com/photos/IgUR1iX0mqM](https://unsplash.com/photos/IgUR1iX0mqM) |
 | managed-it.jpg | Managed IT hero | [Kobu Agency](https://unsplash.com/@kobuagency) | [unsplash.com/photos/7okkFhxrxNw](https://unsplash.com/photos/7okkFhxrxNw) |
 | help-desk.jpg | Help desk hero | [Petr Macháček](https://unsplash.com/@machec) | [unsplash.com/photos/BeVGrXEktIk](https://unsplash.com/photos/BeVGrXEktIk) |

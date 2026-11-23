@@ -1,7 +1,7 @@
 {{- $h := .Params.hero | default dict }}
 {{- $heading := $h.heading | default .Title }}
 <section class="section page-hero"><div class="wrap">
-  <div class="hero{{ if or $h.art $h.image }} hero-split{{ end }}">
+  <div class="hero{{ if or $h.art $h.image }} hero-split{{ end }}{{ if $.IsHome }} home-hero{{ end }}">
     <div class="stack" style="--stack-space: var(--space-m)">
       {{ with $h.kicker }}<p class="kicker">{{ . }}</p>{{ end }}
       <h1{{ if $.IsHome }} class="display"{{ end }}>{{ $heading }}</h1>
