@@ -3,810 +3,538 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Electric Dev mood board: Pacific Current</title>
+<title>Electric Dev mood board</title>
 <meta name="robots" content="noindex">
 <style>
-/* ===== Pacific Current tokens ===== */
-/*
-  Electric Dev design tokens: Pacific Current
-  Everything this page needs is inline; fonts load from fonts/ beside it.
+/* ---------- Fonts (self-hosted, OFL-1.1, from Fontsource) ---------- */
+@font-face { font-family: "Space Grotesk"; src: url(fonts/space-grotesk-latin-wght-normal.woff2) format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url(fonts/jetbrains-mono-latin-wght-normal.woff2) format("woff2"); font-weight: 100 800; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url(fonts/source-serif-4-latin-wght-normal.woff2) format("woff2"); font-weight: 200 900; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url(fonts/ibm-plex-sans-latin-wght-normal.woff2) format("woff2"); font-weight: 100 700; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Bricolage Grotesque"; src: url(fonts/bricolage-grotesque-latin-wght-normal.woff2) format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible Next"; src: url(fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2) format("woff2"); font-weight: 200 800; font-display: swap; }
 
-  Tiers:
-  1. Palette: raw colors. Only tokens.css should use these directly.
-  2. Semantic: what a color is for. Components use these.
-  3. Component: a few tokens a component exposes so a variant can change it.
-
-  Contrast ratios are WCAG 2 and listed next to every text pair.
-  The site is light only. Dark surfaces (fix log, footer) are set per component.
-*/
-
-/* ---------- Fonts: self-hosted, OFL-1.1, two weights (400 and 600) ---------- */
-@font-face {
-  font-family: "Source Serif 4";
-  src: url(fonts/source-serif-4-latin-wght-normal.woff2) format("woff2");
-  font-weight: 400 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "IBM Plex Sans";
-  src: url(fonts/ibm-plex-sans-latin-wght-normal.woff2) format("woff2");
-  font-weight: 400 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
+/* ---------- Page shell ---------- */
 :root {
-  color-scheme: only light;
-
-  /* ---------- 1. Palette ---------- */
-  --mist: #F5F8FB;          /* page */
-  --white: #FFFFFF;         /* cards, fields */
-  --tide: #E8F1F4;          /* hero wash end, tinted panels */
-  --deep-water: #0B2540;    /* text, dark surfaces */
-  --deep-water-2: #12304F;  /* raised panel on deep water */
-  --slate: #475A70;         /* muted text */
-  --fog: #A9B8CA;           /* muted text on deep water */
-  --rock: #748499;          /* field and control borders */
-  --sand: #D9E1EA;          /* dividers, card borders */
-  --current: #00707A;       /* primary accent */
-  --current-deep: #005A62;  /* primary hover and pressed */
-  --current-tint: #E6F2F3;  /* info callout */
-  --shallows: #7FC8CF;      /* decoration, links on deep water */
-  --beacon: #FFB547;        /* signature amber fill */
-  --beacon-ink: #8A5300;    /* amber text and marks on light */
-  --beacon-tint: #FFF4E0;   /* highlight wash */
-  --kelp: #86EFAC;          /* "fixed" on dark surfaces */
-  --ember: #B42318;         /* errors */
-  --ember-tint: #FDECEA;    /* error callout */
-
-  /* ---------- 2. Semantic color ---------- */
-  --color-page: var(--mist);
-  --color-surface: var(--white);
-  --color-surface-tint: var(--tide);
-  --color-text: var(--deep-water);          /* 14.6:1 on page, 15.5:1 on surface */
-  --color-text-muted: var(--slate);         /* 6.7:1 on page, 7.1:1 on surface */
-  --color-accent: var(--current);           /* 5.5:1 on page, 5.8:1 on surface */
-  --color-accent-strong: var(--current-deep); /* 8.0:1 on surface */
-  --color-on-accent: var(--white);          /* 5.8:1 on accent, 8.0:1 on accent-strong */
-  --color-link: var(--current);
-  --color-link-hover: var(--current-deep);
-  --color-border: var(--rock);              /* 3.6:1 on page, 3.8:1 on surface (non-text 3:1) */
-  --color-divider: var(--sand);             /* decorative only, never the only boundary of a control */
-  --color-focus: var(--current-deep);
-
-  /* Amber: the signature. Status, highlights, the "Most popular" badge. */
-  --color-signature: var(--beacon);         /* fill only on light; deep-water text on it is 8.8:1 */
-  --color-on-signature: var(--deep-water);
-  --color-signature-text: var(--beacon-ink); /* 6.3:1 on surface, 5.9:1 on page, 5.8:1 on highlight */
-  --color-highlight: var(--beacon-tint);    /* deep-water text on it is 14.2:1 */
-
-  /* Status */
-  --color-status-ok: var(--current);        /* healthy, done */
-  --color-status-working: var(--beacon-ink);/* in progress, needs a look */
-  --color-status-error: var(--ember);       /* 6.6:1 on surface, 6.2:1 on page */
-  --color-error-tint: var(--ember-tint);    /* ember text on it is 5.8:1 */
-  --color-info-tint: var(--current-tint);   /* deep-water 13.6:1, current 5.1:1 */
-
-  /* Dark surface (footer, fix log, inverse bands) */
-  --color-inverse: var(--deep-water);
-  --color-inverse-raised: var(--deep-water-2);
-  --color-on-inverse: #E6EAF0;              /* 12.9:1 on deep water, 11.1:1 on raised */
-  --color-on-inverse-muted: var(--fog);     /* 7.7:1 on deep water, 6.7:1 on raised */
-  --color-inverse-link: var(--shallows);    /* 8.2:1 on deep water */
-  --color-inverse-signature: var(--beacon); /* 8.8:1 on deep water, 7.7:1 on raised */
-  --color-inverse-ok: var(--kelp);          /* 11.1:1 on deep water */
-  --color-inverse-border: #4A6684;          /* decorative frame on deep water */
-
-  /* ---------- Type ---------- */
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-
-  /* Two weights for the whole site. Never 500 or 700. */
-  --weight-regular: 400;
-  --weight-strong: 600;
-
-  /* Scale: about 1.25 at small screens, opening up to about 1.333 on wide ones.
-     Fluid sizes keep max at or below 2.5x min so zoom still reaches 200%. */
-  --text-xs: 0.8125rem;                                   /* 13px: legal, captions only */
-  --text-sm: 0.875rem;                                    /* 14px: hints, meta, badges */
-  --text-base: 1.0625rem;                                 /* 17px: body */
-  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem); /* lede */
-  --text-h4: clamp(1.25rem, 1.15rem + 0.4vw, 1.4375rem);
-  --text-h3: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
-  --text-h2: clamp(1.75rem, 1.35rem + 1.8vw, 2.75rem);
-  --text-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
-  --text-display: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem); /* hero headline only */
-  --text-price: clamp(2.5rem, 2rem + 2vw, 3.5rem);
-
-  --leading-tight: 1.1;   /* display, h1 */
-  --leading-snug: 1.25;   /* h2 to h4 */
-  --leading-body: 1.6;
-  --measure: 66ch;        /* longest line of running text */
-
-  /* ---------- Space: 4px steps, in rem ---------- */
-  --space-3xs: 0.25rem;  /* 4 */
-  --space-2xs: 0.5rem;   /* 8 */
-  --space-xs: 0.75rem;   /* 12 */
-  --space-s: 1rem;       /* 16 */
-  --space-m: 1.5rem;     /* 24 */
-  --space-l: 2rem;       /* 32 */
-  --space-xl: 3rem;      /* 48 */
-  --space-2xl: 4rem;     /* 64 */
-  --space-3xl: 6rem;     /* 96 */
-  --space-section: clamp(3rem, 2rem + 5vw, 6rem); /* between page sections */
-  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);      /* page side padding */
-  --page-max: 75rem;
-
-  /* ---------- Radius ---------- */
-  --radius-s: 6px;     /* badges, small controls */
-  --radius-m: 10px;    /* buttons, fields, cards */
-  --radius-l: 16px;    /* hero panels, plan cards */
-  --radius-pill: 999px;
-
-  /* ---------- Shadow: navy-tinted, used sparingly ---------- */
-  --shadow-s: 0 1px 2px rgb(11 37 64 / 0.08);
-  --shadow-m: 0 2px 4px rgb(11 37 64 / 0.06), 0 8px 24px rgb(11 37 64 / 0.08);
-  --shadow-l: 0 4px 8px rgb(11 37 64 / 0.06), 0 20px 48px rgb(11 37 64 / 0.12);
-
-  /* ---------- Motion ---------- */
-  --duration-fast: 120ms;   /* hover, press */
-  --duration-base: 200ms;   /* disclosure, focus */
-  --duration-slow: 320ms;   /* fix log line reveal */
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
-
-  /* ---------- Focus ---------- */
-  --focus-ring: 3px solid var(--color-focus);
-  --focus-offset: 3px;
+  --shell-bg: #F4F4F2;
+  --shell-text: #1A1A1A;
+  --shell-muted: #555555;
+  --shell-line: #8A8A8A;
+  @media (prefers-color-scheme: dark) {
+    --shell-bg: #141414;
+    --shell-text: #EDEDED;
+    --shell-muted: #B0B0B0;
+    --shell-line: #6E6E6E;
+  }
+  color-scheme: light dark;
 }
-
-@media (prefers-reduced-motion: reduce) {
+@supports (color: light-dark(white, black)) {
   :root {
-    --duration-fast: 0ms;
-    --duration-base: 0ms;
-    --duration-slow: 0ms;
+    --shell-bg: light-dark(#F4F4F2, #141414);
+    --shell-text: light-dark(#1A1A1A, #EDEDED);
+    --shell-muted: light-dark(#555555, #B0B0B0);
+    --shell-line: light-dark(#8A8A8A, #6E6E6E);
   }
 }
-
-/* ===== Base and components ===== */
-/*
-  Electric Dev base and component styles: Pacific Current.
-  Requires tokens.css. Plain CSS, no build step, no framework.
-  Every value comes from a token; if you need a new value, add a token first.
-*/
-@layer reset, base, layout, components, utilities;
-
-/* ---------- reset: element-specific, no global * rules ---------- */
-@layer reset {
-  :where(html) { box-sizing: border-box; -webkit-text-size-adjust: none; text-size-adjust: none; }
-  :where(*, *::before, *::after) { box-sizing: inherit; }
-  :where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol, pre) { margin: 0; }
-  :where(img, svg, video) { display: block; max-inline-size: 100%; block-size: auto; }
-  :where(input, button, textarea, select) { font: inherit; color: inherit; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--shell-bg);
+  color: var(--shell-text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
 }
-
-/* ---------- base ---------- */
-@layer base {
-  html {
-    background: var(--color-page);
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-size: 100%;
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-body);
-    font-size-adjust: from-font;
-    font-synthesis-weight: none; /* never fake a third weight */
-    accent-color: var(--color-accent);
-    -webkit-font-smoothing: antialiased;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    html:focus-within { scroll-behavior: smooth; }
-  }
-  body { font-size: var(--text-base); }
-
-  h1, h2, h3, h4, .display {
-    font-family: var(--font-display);
-    font-weight: var(--weight-strong);
-    line-height: var(--leading-snug);
-    text-wrap: balance;
-  }
-  .display { font-size: var(--text-display); line-height: var(--leading-tight); letter-spacing: -0.01em; }
-  h1 { font-size: var(--text-h1); line-height: var(--leading-tight); letter-spacing: -0.01em; }
-  h2 { font-size: var(--text-h2); }
-  h3 { font-size: var(--text-h3); }
-  h4 { font-size: var(--text-h4); }
-
-  p, li, dd { max-inline-size: var(--measure); text-wrap: pretty; }
-  :where(p + p) { margin-block-start: var(--space-s); }
-  b, strong, th, dt { font-weight: var(--weight-strong); }
-  small { font-size: var(--text-sm); }
-
-  a {
-    color: var(--color-link);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
-    transition: color var(--duration-fast) var(--ease-standard), text-decoration-thickness var(--duration-fast) var(--ease-standard);
-    &:hover { color: var(--color-link-hover); text-decoration-thickness: 2px; }
-  }
-
-  /* Mono means the machine is talking: logs, ticket IDs, device names, live numbers. */
-  code, kbd, samp, pre, .machine {
-    font-family: var(--font-mono);
-    font-weight: var(--weight-regular);
-    font-size: 0.9375em;
-    font-size-adjust: ch-width from-font;
-  }
-
-  /* Highlight: amber wash, the only marker style. */
-  mark {
-    background: var(--color-highlight);
-    color: var(--color-text);
-    padding-inline: 0.15em;
-    border-radius: 2px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    box-shadow: inset 0 -2px 0 var(--color-signature);
-  }
-
-  ::selection { background: var(--color-highlight); color: var(--color-text); }
-
-  :focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
-
-  hr { border: 0; border-block-start: 1px solid var(--color-divider); margin-block: var(--space-l); }
+.shell { max-width: 72rem; margin-inline: auto; padding: 2rem 1.25rem; }
+.shell h1 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); line-height: 1.15; margin: 0 0 .5rem; text-wrap: balance; }
+.shell p { max-width: 65ch; text-wrap: pretty; }
+.shell .muted { color: var(--shell-muted); }
+.jump { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin: 1.5rem 0 0; }
+.jump a {
+  display: inline-block; padding: .5rem .9rem; border: 1px solid var(--shell-line);
+  border-radius: 999px; color: inherit; text-decoration: none;
 }
+.jump a:hover { border-color: currentColor; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
-/* ---------- layout ---------- */
-@layer layout {
-  .wrap { max-inline-size: var(--page-max); margin-inline: auto; padding-inline: var(--gutter); }
-  .section { padding-block: var(--space-section); }
-  .stack > * + * { margin-block-start: var(--stack-space, var(--space-s)); }
-  .cluster { display: flex; flex-wrap: wrap; gap: var(--cluster-space, var(--space-xs)); align-items: center; }
-  .grid-auto {
-    display: grid;
-    gap: var(--space-m);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min, 18rem)), 1fr));
-  }
+/* ---------- Direction shared layout ---------- */
+.dir {
+  /* each direction sets these tokens */
+  --bg: ; --surface: ; --text: ; --muted: ; --line: ; --line-soft: ;
+  --accent: ; --accent-ink: ; --accent-text: ; --ok: ;
+  --font-display: ; --font-body: ; --font-mono: ;
+  --radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size-adjust: from-font;
+  padding-block: 4rem;
+  border-block-start: 1px solid var(--line-soft);
 }
+.dir .inner { max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+.dir h2, .dir h3, .dir .display { font-family: var(--font-display); }
+.dir h2 { font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); line-height: 1.05; margin: 0; text-wrap: balance; }
+.dir h3 { font-size: 1.25rem; margin: 2.5rem 0 1rem; }
+.dir .kicker { font-family: var(--font-mono); font-size: .875rem; color: var(--muted); margin: 0 0 .75rem; }
+.dir .lede { font-size: 1.125rem; max-width: 60ch; color: var(--muted); text-wrap: pretty; }
+.words { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 1.25rem 0 0; list-style: none; }
+.words li { border: 1px solid var(--line); border-radius: 999px; padding: .25rem .75rem; font-size: .875rem; }
 
-/* ---------- components ---------- */
-@layer components {
+.grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); }
+.grid-2 { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: start; }
+@media (width >= 56rem) { .grid-2 { grid-template-columns: 22rem 1fr; gap: 2.5rem; } }
 
-  /* Kicker / eyebrow */
-  .kicker {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: var(--weight-strong);
-    color: var(--color-signature-text);
-  }
-  .lede { font-size: var(--text-lg); color: var(--color-text-muted); }
-
-  /* Buttons: real borders so they survive forced colors */
-  .btn {
-    --btn-bg: var(--color-accent);
-    --btn-fg: var(--color-on-accent);
-    --btn-border: var(--color-accent);
-    --btn-bg-hover: var(--color-accent-strong);
-    --btn-border-hover: var(--color-accent-strong);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2xs);
-    min-block-size: 2.75rem;          /* 44px target */
-    padding: var(--space-xs) var(--space-m);
-    border: 2px solid var(--btn-border);
-    border-radius: var(--radius-m);
-    background: var(--btn-bg);
-    color: var(--btn-fg);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: var(--weight-strong);
-    line-height: var(--leading-snug);
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
-    &:hover { background: var(--btn-bg-hover); border-color: var(--btn-border-hover); color: var(--btn-fg); text-decoration: none; }
-    &:active { translate: 0 1px; }
-    &:disabled, &[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; translate: none; }
-  }
-  .btn.secondary {
-    --btn-bg: transparent;
-    --btn-fg: var(--color-text);
-    --btn-border: var(--color-border);
-    --btn-bg-hover: var(--color-surface);
-    --btn-border-hover: var(--color-text);
-  }
-  .btn.quiet {
-    --btn-bg: transparent;
-    --btn-fg: var(--color-link);
-    --btn-border: transparent;
-    --btn-bg-hover: var(--color-info-tint);
-    --btn-border-hover: transparent;
-    padding-inline: var(--space-s);
-  }
-  .btn.small { min-block-size: 2.25rem; padding: var(--space-2xs) var(--space-s); font-size: var(--text-sm); }
-
-  /* Badge: amber is the signature */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-3xs);
-    padding: var(--space-3xs) var(--space-xs);
-    border-radius: var(--radius-pill);
-    background: var(--color-signature);
-    color: var(--color-on-signature);
-    font-size: var(--text-sm);
-    font-weight: var(--weight-strong);
-    line-height: var(--leading-snug);
-  }
-  .badge.neutral { background: var(--color-surface-tint); color: var(--color-text); }
-
-  /* Status line: a dot plus words, never color alone */
-  .status {
-    display: inline-flex;
-    align-items: baseline;
-    gap: var(--space-2xs);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--color-text);
-    &::before {
-      content: "";
-      flex: none;
-      inline-size: 0.625rem;
-      block-size: 0.625rem;
-      border-radius: 50%;
-      background: var(--status-color, var(--color-status-ok));
-      translate: 0 -0.05em;
-    }
-    &.working { --status-color: var(--color-status-working); }
-    &.working::before { box-shadow: 0 0 0 3px var(--color-highlight); }
-    &.error { --status-color: var(--color-status-error); }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .status.working::before { animation: pulse 1.6s var(--ease-standard) infinite; }
-  }
-  @keyframes pulse { 50% { box-shadow: 0 0 0 6px var(--color-highlight); } }
-
-  /* Form fields */
-  .field {
-    display: grid;
-    gap: var(--space-3xs);
-    max-inline-size: 28rem;
-    label, legend { font-weight: var(--weight-strong); font-size: var(--text-base); }
-    .hint { font-size: var(--text-sm); color: var(--color-text-muted); }
-    .error-text { font-size: var(--text-sm); color: var(--color-status-error); display: none; }
-  }
-  :where(.field) :is(input:not([type="checkbox"], [type="radio"]), select, textarea) {
-    inline-size: 100%;
-    min-block-size: 2.75rem;
-    padding: var(--space-2xs) var(--space-xs);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-m);
-    background: var(--color-surface);
-    color: var(--color-text);
-    transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
-    &::placeholder { color: var(--color-text-muted); opacity: 1; }
-    &:hover { border-color: var(--color-text); }
-    &:focus-visible { outline: var(--focus-ring); outline-offset: 1px; border-color: var(--color-focus); }
-    &:user-invalid { border-color: var(--color-status-error); box-shadow: inset 4px 0 0 var(--color-status-error); }
-  }
-  .field textarea { min-block-size: 7.5rem; resize: vertical; field-sizing: content; }
-  .field:has(:user-invalid) .error-text { display: block; }
-  .check {
-    display: flex;
-    gap: var(--space-2xs);
-    align-items: start;
-    input { inline-size: 1.25rem; block-size: 1.25rem; margin: 0.2em 0 0; flex: none; }
-  }
-
-  /* Card */
-  .card {
-    container-type: inline-size;
-    display: grid;
-    align-content: start;
-    gap: var(--space-xs);
-    padding: var(--space-m);
-    background: var(--color-surface);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-m);
-    box-shadow: var(--shadow-s);
-    h3 { font-size: var(--text-h4); }
-    footer { margin-block-start: var(--space-2xs); }
-  }
-  .card:has(.card-link) { position: relative; transition: box-shadow var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard); }
-  .card:has(.card-link:hover) { box-shadow: var(--shadow-m); border-color: var(--color-border); }
-  .card-link {
-    color: inherit;
-    text-decoration: none;
-    &::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
-    &:focus-visible { outline: none; }
-    &:focus-visible::after { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
-  }
-
-  /* Plan cards */
-  .plans {
-    display: grid;
-    gap: var(--space-m);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-    align-items: stretch;
-  }
-  .plan {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    padding: var(--space-l) var(--space-m);
-    background: var(--color-surface);
-    border: 1px solid var(--color-divider);
-    border-radius: var(--radius-l);
-    h3 { font-size: var(--text-h3); }
-    .price {
-      font-family: var(--font-display);
-      font-size: var(--text-price);
-      font-weight: var(--weight-strong);
-      line-height: 1;
-      font-variant-numeric: lining-nums tabular-nums;
-      small { font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-regular); color: var(--color-text-muted); }
-    }
-    .note { font-size: var(--text-sm); color: var(--color-text-muted); }
-    ul { list-style: none; padding: 0; margin-block: var(--space-xs) var(--space-m); }
-    li {
-      display: flex;
-      gap: var(--space-2xs);
-      padding-block: var(--space-2xs);
-      border-block-end: 1px solid var(--color-divider);
-      &::before { content: "✓" / ""; color: var(--color-accent); font-weight: var(--weight-strong); }
-    }
-    .btn { margin-block-start: auto; }
-  }
-  /* Featured plan: amber frame and badge. Border width stays the same as siblings. */
-  .plan.featured {
-    border-color: var(--color-signature);
-    box-shadow: 0 0 0 2px var(--color-signature), var(--shadow-m);
-    background: linear-gradient(to bottom, var(--color-highlight), var(--color-surface) 9rem);
-  }
-
-  /* Callouts */
-  .callout {
-    --callout-bg: var(--color-info-tint);
-    --callout-bar: var(--color-accent);
-    display: grid;
-    gap: var(--space-3xs);
-    padding: var(--space-s) var(--space-m);
-    background: var(--callout-bg);
-    border-inline-start: 4px solid var(--callout-bar);
-    border-radius: var(--radius-s);
-    > * { margin: 0; }
-    .title { font-weight: var(--weight-strong); }
-    &.highlight { --callout-bg: var(--color-highlight); --callout-bar: var(--color-signature); }
-    &.error { --callout-bg: var(--color-error-tint); --callout-bar: var(--color-status-error); }
-  }
-
-  /* Fix log: the signature element. Always dark. Always mono. */
-  .fixlog {
-    color-scheme: only dark;
-    margin: 0;
-    background: var(--color-inverse);
-    color: var(--color-on-inverse);
-    border: 1px solid var(--color-inverse-border);
-    border-radius: var(--radius-m);
-    box-shadow: var(--shadow-l);
-    overflow: hidden;
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    line-height: 1.7;
-    .bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: var(--space-2xs) var(--space-s);
-      padding: var(--space-2xs) var(--space-s);
-      background: var(--color-inverse-raised);
-      border-block-end: 1px solid var(--color-inverse-border);
-      color: var(--color-on-inverse-muted);
-    }
-    ol { list-style: none; margin: 0; padding: var(--space-s); display: grid; gap: var(--space-3xs); }
-    li {
-      display: grid;
-      grid-template-columns: 9ch 1fr;
-      gap: var(--space-s);
-      max-inline-size: none;
-      overflow-wrap: anywhere;
-    }
-    .step { color: var(--color-on-inverse-muted); }
-    .human .step { color: var(--color-inverse-signature); }
-    .done .step, .ok { color: var(--color-inverse-ok); }
-    figcaption {
-      padding: var(--space-2xs) var(--space-s) var(--space-s);
-      font-family: var(--font-body);
-      color: var(--color-on-inverse-muted);
-    }
-  }
-  @container (width < 30rem) {
-    .fixlog li { grid-template-columns: 1fr; gap: 0; }
-  }
-  .fixlog-wrap { container-type: inline-size; }
-  @media (prefers-reduced-motion: no-preference) {
-    .fixlog.play li {
-      animation: line-in var(--duration-slow) var(--ease-standard) both;
-      animation-delay: calc(var(--i, 0) * 450ms);
-    }
-  }
-  @keyframes line-in { from { opacity: 0; translate: 0 0.25rem; } }
-
-  /* Site header and nav */
-  .site-header {
-    background: color-mix(in oklab, var(--color-page) 92%, transparent);
-    border-block-end: 1px solid var(--color-divider);
-    position: sticky;
-    inset-block-start: 0;
-    z-index: 10;
-    backdrop-filter: blur(8px);
-    .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s) var(--space-l); padding-block: var(--space-xs); }
-    .brand { font-family: var(--font-display); font-weight: var(--weight-strong); font-size: var(--text-h4); color: var(--color-text); text-decoration: none; }
-    nav { flex: 1; }
-    nav ul { display: flex; flex-wrap: wrap; gap: var(--space-3xs) var(--space-m); list-style: none; padding: 0; }
-    nav a {
-      display: inline-block;
-      padding-block: var(--space-2xs);
-      color: var(--color-text);
-      text-decoration: none;
-      border-block-end: 2px solid transparent;
-      &:hover { border-block-end-color: var(--color-border); }
-      &[aria-current="page"] { border-block-end-color: var(--color-signature); font-weight: var(--weight-strong); }
-    }
-  }
-  @media (width < 40rem) {
-    .site-header { position: static; }
-  }
-  @supports not (backdrop-filter: blur(8px)) {
-    .site-header { background: var(--color-page); }
-  }
-
-  /* Footer: deep water band */
-  .site-footer {
-    color-scheme: only dark;
-    background: var(--color-inverse);
-    color: var(--color-on-inverse);
-    padding-block: var(--space-xl) var(--space-l);
-    font-size: var(--text-sm);
-    a { color: var(--color-inverse-link); }
-    a:hover { color: var(--color-on-inverse); }
-    :focus-visible { outline-color: var(--color-inverse-link); }
-    h2 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: var(--weight-strong); color: var(--color-on-inverse-muted); margin-block-end: var(--space-2xs); }
-    ul { list-style: none; padding: 0; display: grid; gap: var(--space-3xs); }
-    .cols { display: grid; gap: var(--space-l); grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
-    .legal { margin-block-start: var(--space-xl); padding-block-start: var(--space-m); border-block-start: 1px solid var(--color-inverse-border); color: var(--color-on-inverse-muted); }
-    .status { color: var(--color-on-inverse); --status-color: var(--color-inverse-ok); }
-  }
-
-  /* Hero panel with tide-ring texture */
-  .hero {
-    padding: clamp(1.5rem, 0.75rem + 4vw, 4rem);
-    border-radius: var(--radius-l);
-    border: 1px solid var(--color-divider);
-    background:
-      repeating-radial-gradient(circle at 110% 120%, transparent 0 1.4rem, rgb(0 112 122 / 0.08) 0 calc(1.4rem + 1px)),
-      linear-gradient(160deg, var(--color-surface), var(--color-surface-tint));
-  }
+/* Swatches */
+.swatch {
+  border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; background: var(--surface);
+  margin: 0;
 }
+.swatch .chip { block-size: 5rem; background: var(--c); border-block-end: 1px solid var(--line-soft); }
+.swatch figcaption { padding: .6rem .75rem; font-size: .875rem; }
+.swatch code { font-family: var(--font-mono); font-size: .8125rem; color: var(--muted); display: block; }
 
-/* ---------- forced colors ---------- */
+/* Type specimen */
+.specimen { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 1.5rem; }
+.specimen .big { font-family: var(--font-display); font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem); line-height: 1; margin: 0 0 1rem; }
+.specimen .meta { font-family: var(--font-mono); font-size: .8125rem; color: var(--muted); margin: 0 0 .25rem; }
+.specimen p { max-width: 60ch; margin: 0 0 1rem; text-wrap: pretty; }
+.specimen .mono { font-family: var(--font-mono); font-size: .9375rem; }
+
+/* Texture tiles */
+.texture { block-size: 9rem; border-radius: var(--radius); border: 1px solid var(--line-soft); }
+.texture-label { font-size: .875rem; color: var(--muted); margin: .4rem 0 0; }
+
+/* Hero fragment */
+.hero {
+  border-radius: calc(var(--radius) * 2); padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  border: 1px solid var(--line-soft); isolation: isolate; position: relative; overflow: hidden;
+}
+.hero .headline { font-size: clamp(2.25rem, 1.4rem + 4vw, 4.5rem); line-height: 1; margin: 0 0 1rem; max-width: 14ch; text-wrap: balance; }
+.hero p { max-width: 50ch; font-size: 1.125rem; margin: 0 0 1.5rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* Buttons: real borders so they survive forced colors */
+.btn {
+  display: inline-block; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  padding: .75rem 1.25rem; border-radius: var(--radius); border: 2px solid var(--accent);
+  background: var(--accent); color: var(--accent-ink);
+}
+.btn.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+.btn:hover { filter: brightness(1.08); }
+
+/* Plan card */
+.plan {
+  background: var(--surface); border: 2px solid var(--accent); border-radius: calc(var(--radius) * 1.5);
+  padding: 1.5rem; max-width: 22rem;
+}
+.badge {
+  display: inline-block; font-family: var(--font-mono); font-size: .8125rem; font-weight: 500;
+  background: var(--accent); color: var(--accent-ink); padding: .2rem .6rem; border-radius: 999px;
+}
+.plan .name { font-family: var(--font-display); font-size: 1.5rem; margin: .75rem 0 .25rem; }
+.plan .price { font-family: var(--font-display); font-size: 3rem; line-height: 1; margin: .5rem 0 0; }
+.plan .price small { font-family: var(--font-body); font-size: 1rem; color: var(--muted); }
+.plan .note { font-size: .8125rem; color: var(--muted); margin: .25rem 0 1rem; }
+.plan ul { padding: 0; margin: 0 0 1.5rem; list-style: none; }
+.plan li { padding-block: .4rem; border-block-end: 1px solid var(--line-soft); }
+.plan li::before { content: "✓ "; color: var(--accent-text); font-weight: 700; }
+
+/* Terminal: always a dark surface */
+.term {
+  color-scheme: only dark;
+  --t-bg: #0D1014; --t-text: #E6EAF0; --t-muted: #98A2B3; --t-key: var(--term-key, #7DD3FC); --t-ok: #86EFAC;
+  background: var(--t-bg); color: var(--t-text);
+  font-family: var(--font-mono); font-size: .875rem; line-height: 1.6;
+  border-radius: var(--radius); border: 1px solid #39414D; overflow: hidden; margin: 0;
+}
+.term .bar { display: flex; gap: .4rem; padding: .6rem .8rem; border-block-end: 1px solid #39414D; color: var(--t-muted); font-size: .8125rem; }
+.term pre { margin: 0; padding: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.term .k { color: var(--t-key); }
+.term .m { color: var(--t-muted); }
+.term .ok { color: var(--t-ok); }
+
+/* Form field */
+.field { display: grid; gap: .35rem; max-width: 22rem; }
+.field label { font-weight: 600; font-size: .9375rem; }
+.field input {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: .65rem .8rem;
+  accent-color: var(--accent);
+}
+.field .hint { font-size: .8125rem; color: var(--muted); }
+.status { display: flex; align-items: baseline; gap: .5rem; font-size: .875rem; font-family: var(--font-mono); margin: 1.5rem 0 0; }
+.status::before { content: ""; flex: none; inline-size: .6rem; block-size: .6rem; border-radius: 50%; background: var(--ok); }
+
+.refs { padding-inline-start: 1.1rem; }
+.refs li { margin-block: .35rem; }
+.dir a:not(.btn) { color: var(--accent-text); text-underline-offset: .15em; }
+
+/* ---------- A. Live Wire ---------- */
+.live-wire {
+  color-scheme: only dark;
+  --bg: #0E1116; --surface: #171B22; --text: #E8ECF1; --muted: #9AA4B2;
+  --line: #6B7584; --line-soft: #2A313C;
+  --accent: #E4FF3A; --accent-ink: #0E1116; --accent-text: #E4FF3A; --ok: #5EEAD4;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius: 6px;
+  --term-key: #E4FF3A;
+}
+.live-wire .hero {
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, color-mix(in oklab, #E4FF3A 22%, transparent), transparent 60%),
+    linear-gradient(to right, #ffffff0d 1px, transparent 0) 0 0 / 2.5rem 2.5rem,
+    linear-gradient(to bottom, #ffffff0d 1px, transparent 0) 0 0 / 2.5rem 2.5rem,
+    var(--surface);
+}
+.lw-tex-1 { background: linear-gradient(to right, #ffffff14 1px, transparent 0) 0 0 / 1.5rem 1.5rem, linear-gradient(to bottom, #ffffff14 1px, transparent 0) 0 0 / 1.5rem 1.5rem, var(--surface); }
+.lw-tex-2 { background: repeating-linear-gradient(to bottom, #E4FF3A1f 0 1px, transparent 0 4px), var(--bg); }
+.lw-tex-3 { background: radial-gradient(circle at 30% 40%, color-mix(in oklab, #E4FF3A 35%, transparent), transparent 45%), radial-gradient(circle at 75% 70%, color-mix(in oklab, #5EEAD4 30%, transparent), transparent 40%), var(--bg); }
+
+/* ---------- B. Pacific Current ---------- */
+.pacific {
+  color-scheme: only light;
+  --bg: #F5F8FB; --surface: #FFFFFF; --text: #0B2540; --muted: #475A70;
+  --line: #8796AA; --line-soft: #D9E1EA;
+  --accent: #00707A; --accent-ink: #FFFFFF; --accent-text: #00707A; --ok: #00707A;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius: 10px;
+  --term-key: #FFB547;
+}
+.pacific .hero {
+  background:
+    repeating-radial-gradient(circle at 110% 120%, transparent 0 1.4rem, #00707A14 0 calc(1.4rem + 1px)),
+    linear-gradient(160deg, #FFFFFF, #E8F1F4);
+}
+.pa-tex-1 { background: repeating-radial-gradient(circle at 0 100%, transparent 0 .9rem, #00707A26 0 calc(.9rem + 1px)), var(--surface); }
+.pa-tex-2 { background: linear-gradient(180deg in oklab, #0B2540, #00707A 70%, #7FC8CF); }
+.pa-tex-3 { background: repeating-linear-gradient(-12deg, transparent 0 1.25rem, #0B254012 0 1.35rem), var(--bg); }
+
+/* ---------- C. Warm Circuit ---------- */
+.warm {
+  color-scheme: only light;
+  --bg: #FBF7F0; --surface: #FFFFFF; --text: #1C1917; --muted: #57534E;
+  --line: #968C80; --line-soft: #E7DFD3;
+  --accent: #9A4318; --accent-ink: #FFFFFF; --accent-text: #9A4318; --ok: #2F7D5B;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius: 14px;
+  --term-key: #FDBA74;
+}
+.warm .hero {
+  --dot: radial-gradient(circle, #9A431833 .12rem, transparent calc(.12rem + 1px));
+  background: var(--dot) 0 0 / 1.25rem 1.25rem, #F4E9DA;
+}
+.wc-tex-1 { --dot: radial-gradient(circle, #9A431859 .15rem, transparent calc(.15rem + 1px)); background: var(--dot) 0 0 / 1rem 1rem, var(--bg); }
+.wc-tex-2 { background: linear-gradient(to right, transparent 0 46%, #B4501E 0 54%, transparent 0) 0 0 / 3rem 100%, linear-gradient(to bottom, transparent 0 46%, #B4501E 0 54%, transparent 0) 0 0 / 100% 3rem, #F4E9DA; }
+.wc-tex-3 { background: linear-gradient(135deg in oklab, #F4E9DA, #E9B48F 55%, #9A4318); }
+
+/* ---------- Forced colors ---------- */
 @media (forced-colors: active) {
   .btn { border-color: ButtonText; }
-  .badge, .callout, .plan.featured { border: 1px solid CanvasText; }
+  .badge { border: 1px solid CanvasText; }
   .status::before { background: CanvasText; }
-  mark { forced-color-adjust: none; background: Mark; color: MarkText; box-shadow: none; }
+  .texture { border-color: CanvasText; }
 }
-
-/* ---------- utilities ---------- */
-@layer utilities {
-  .visually-hidden {
-    clip-path: inset(50%);
-    block-size: 1px;
-    inline-size: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-  }
-  .muted { color: var(--color-text-muted); }
-  .signature-text { color: var(--color-signature-text); }
-}
-
-</style>
-<style>
-/* Mood board page layout. */
-@layer board {
-  .board-section { padding-block: var(--space-2xl); border-block-start: 1px solid var(--color-divider); }
-  .board-section > .wrap > * + * { margin-block-start: var(--space-m); }
-  .words { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
-  .words li { padding: var(--space-3xs) var(--space-xs); border: 1px solid var(--color-border); border-radius: var(--radius-pill); font-size: var(--text-sm); }
-  .changes { padding-inline-start: 1.2rem; display: grid; gap: var(--space-2xs); }
-
-  .swatches { display: grid; gap: var(--space-s); grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); }
-  .swatch { margin: 0; background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-m); overflow: hidden; }
-  .swatch .chip { block-size: 5rem; background: var(--c); border-block-end: 1px solid var(--color-divider); }
-  .swatch.big .chip { block-size: 8rem; }
-  .swatch figcaption { padding: var(--space-2xs) var(--space-xs); font-size: var(--text-sm); display: grid; }
-  .swatch code { color: var(--color-text-muted); font-size: var(--text-xs); }
-  .swatch.big { grid-column: span 2; }
-  @media (width < 30rem) { .swatch.big { grid-column: auto; } }
-
-  .specimen { background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-m); padding: var(--space-m); }
-  .specimen > * + * { margin-block-start: var(--space-s); }
-
-  .textures { display: grid; gap: var(--space-s); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
-  .texture { block-size: 9rem; border-radius: var(--radius-m); border: 1px solid var(--color-divider); }
-  .tex-rings { background: repeating-radial-gradient(circle at 0 100%, transparent 0 .9rem, rgb(0 112 122 / 0.15) 0 calc(.9rem + 1px)), var(--color-surface); }
-  .tex-depth { background: linear-gradient(180deg in oklab, var(--deep-water), var(--current) 70%, var(--shallows)); }
-  .tex-rain { background: repeating-linear-gradient(-12deg, transparent 0 1.25rem, rgb(11 37 64 / 0.07) 0 1.35rem), var(--color-page); }
-  .tex-beacon { background: radial-gradient(circle at 80% 20%, var(--beacon) 0 1.5rem, rgb(255 181 71 / 0.25) 1.5rem 3rem, transparent 3rem), linear-gradient(160deg, var(--deep-water), var(--deep-water-2)); }
-  .texture-label { font-size: var(--text-sm); color: var(--color-text-muted); margin-block-start: var(--space-2xs); }
-
-  .pair-grid { display: grid; gap: var(--space-l); grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); align-items: start; }
-
-  .refs { display: grid; gap: var(--space-l); grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
-  .ref { margin: 0; background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-m); overflow: hidden; }
-  .ref img { inline-size: 100%; aspect-ratio: 864 / 504; object-fit: cover; object-position: top; border-block-end: 1px solid var(--color-divider); }
-  .ref figcaption { padding: var(--space-s) var(--space-m) var(--space-m); display: grid; gap: var(--space-3xs); }
-  .ref figcaption a { font-weight: var(--weight-strong); }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 </style>
 </head>
 <body>
 
-<main>
-<section class="section">
-  <div class="wrap stack">
-    <p class="kicker">Electric Dev · electricdev.net · step 1 of the site plan, final</p>
-    <h1>Mood board: Pacific Current</h1>
-    <p class="lede">Calm, accountable and corporate, with a Northwest edge. Navy and teal earn trust with finance and compliance buyers. Beacon amber gives it a color nobody else in IT support owns. The fix log, in mono, tells the AI story.</p>
-    <ul class="words" aria-label="Mood words">
-      <li>calm</li><li>accountable</li><li>Northwest</li><li>clear numbers</li><li>the machine shows its work</li>
-    </ul>
-    <h2 style="font-size: var(--text-h4)">What changed from the three-direction board</h2>
-    <ul class="changes">
-      <li>Pacific Current is the direction. Live Wire and Warm Circuit are in git history.</li>
-      <li>Live Wire's fix log is now the signature element, with its rule: <strong>mono means the machine is talking</strong>.</li>
-      <li>Beacon amber moved from a footnote to a real role: live status, highlights and the "Most popular" badge.</li>
-      <li>Two font weights: 400 and 600.</li>
-      <li>Stripe was swapped for Gusto as the serif-and-sans reference, and every reference now has a screenshot.</li>
-    </ul>
-  </div>
-</section>
+<header class="shell">
+  <p class="muted">Electric Dev · electricdev.net · step 1 of the site plan</p>
+  <h1>Mood board: three directions</h1>
+  <p>Each direction below is a full look: colors, type, textures, and a few real pieces of the site (a hero, a pricing card, a form field and a terminal showing the AI fixing a problem). Every text color here passes WCAG AA contrast against its background.</p>
+  <p>Pick one direction to take into the style guide, or name the pieces you want to mix, like "Pacific's colors with Warm Circuit's type". Everything is HTML and CSS. No generated images.</p>
+  <ul class="jump">
+    <li><a href="#live-wire">A. Live Wire</a></li>
+    <li><a href="#pacific">B. Pacific Current</a></li>
+    <li><a href="#warm">C. Warm Circuit</a></li>
+    <li><a href="#decide">What I need from you</a></li>
+  </ul>
+</header>
 
-<section class="board-section" aria-labelledby="hero-title">
-  <div class="wrap">
-    <h2 id="hero-title">Hero sample</h2>
-    <div class="hero stack" style="--stack-space: var(--space-m)">
-      <p class="display" style="max-inline-size: 16ch">IT support that answers in seconds, not tickets.</p>
-      <p class="lede" style="color: var(--color-text)">Our AI technician starts on every issue the moment it's reported, and a named engineer owns your account. <mark>Prices are published, so you know the cost before we talk.</mark></p>
-      <div class="cluster"><a class="btn" href="#components">See pricing</a><a class="btn secondary" href="#components">Get a proposal</a></div>
-      <div class="cluster" style="--cluster-space: var(--space-l)">
-        <span class="status">Median first response: 42 seconds</span>
-        <span class="status working">3 fixes in progress</span>
+<main>
+
+<!-- ===================== A ===================== -->
+<section class="dir live-wire" id="live-wire" aria-labelledby="a-title">
+  <div class="inner">
+    <p class="kicker">Direction A</p>
+    <h2 id="a-title">Live Wire</h2>
+    <p class="lede">Dark, technical and switched on. It looks like the tools engineers use, so it leans into the AI angle hard. It suits IT directors who want to see the machinery. It may feel cold to a CFO.</p>
+    <ul class="words" aria-label="Mood words">
+      <li>fast</li><li>technical</li><li>after hours</li><li>precise</li><li>a little bold</li>
+    </ul>
+
+    <h3>Hero sample</h3>
+    <div class="hero">
+      <p class="headline display">Your computers, fixed while you sleep.</p>
+      <p>An AI technician watches every machine around the clock and fixes problems before your team notices. Our engineers approve anything risky.</p>
+      <div class="actions">
+        <a class="btn" href="#live-wire">See pricing</a>
+        <a class="btn secondary" href="#live-wire">Get a proposal</a>
+      </div>
+      <p class="status">412 machines healthy · 3 fixes in progress</p>
+    </div>
+
+    <h3>Palette</h3>
+    <div class="grid">
+      <figure class="swatch" style="--c:#0E1116"><div class="chip"></div><figcaption>Night<code>#0E1116 · page</code></figcaption></figure>
+      <figure class="swatch" style="--c:#171B22"><div class="chip"></div><figcaption>Panel<code>#171B22 · cards</code></figcaption></figure>
+      <figure class="swatch" style="--c:#E8ECF1"><div class="chip"></div><figcaption>Signal white<code>#E8ECF1 · text 15.9:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#9AA4B2"><div class="chip"></div><figcaption>Static gray<code>#9AA4B2 · muted 7.5:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#E4FF3A"><div class="chip"></div><figcaption>Live wire<code>#E4FF3A · accent 16.8:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#5EEAD4"><div class="chip"></div><figcaption>Healthy<code>#5EEAD4 · status 12.8:1</code></figcaption></figure>
+    </div>
+
+    <h3>Type</h3>
+    <div class="specimen">
+      <p class="meta">Space Grotesk, 400 and 700 · JetBrains Mono for data</p>
+      <p class="big">Uptime is a feeling.</p>
+      <p>One grotesk for headings and body keeps the page tight and engineered. The mono face carries numbers, ticket IDs and anything the AI says, so readers learn that mono means "the machine is talking".</p>
+      <p class="mono">avg. fix time 6m 12s · p1 response &lt; 60s</p>
+    </div>
+
+    <h3>Textures</h3>
+    <div class="grid">
+      <div><div class="texture lw-tex-1"></div><p class="texture-label">Blueprint grid</p></div>
+      <div><div class="texture lw-tex-2"></div><p class="texture-label">Scan lines</p></div>
+      <div><div class="texture lw-tex-3"></div><p class="texture-label">Charge glow</p></div>
+    </div>
+
+    <h3>Components</h3>
+    <div class="grid-2">
+      <div class="plan">
+        <span class="badge">Most popular</span>
+        <p class="name">Complete</p>
+        <p class="price">$135 <small>/ user / month</small></p>
+        <p class="note">Placeholder price from the earlier spec</p>
+        <ul>
+          <li>24/7 AI technician on every device</li>
+          <li>Engineer approval on risky changes</li>
+          <li>Security, patching and backup</li>
+        </ul>
+        <a class="btn" href="#live-wire">Get a proposal</a>
+      </div>
+      <div>
+        <figure class="term" aria-label="Example of the AI technician fixing a ticket">
+          <div class="bar">ticket 4821 · finance-laptop-07</div>
+<pre><span class="k">›</span> Outlook won't open, reported by Dana in Finance
+<span class="m">checking</span>  Outlook profile, add-ins, disk, last updates
+<span class="m">found</span>     add-in "PDFSync 2.3" crashes on start (14 times today)
+<span class="m">plan</span>      disable the add-in, repair Office, leave user files alone
+<span class="m">approval</span>  requested from on-call engineer · <span class="ok">approved</span>
+<span class="ok">fixed</span>     Outlook opens in 3.1s · Dana notified · 6 min total</pre>
+        </figure>
+        <div class="field" style="margin-top:1.5rem">
+          <label for="a-email">Work email</label>
+          <input id="a-email" type="email" autocomplete="email" placeholder="you@company.com">
+          <span class="hint">We reply within one business day.</span>
+        </div>
       </div>
     </div>
+
+    <h3>Sites with a similar feel</h3>
+    <ul class="refs">
+      <li><a href="https://linear.app">linear.app</a>: dark UI, tight grotesk type, one sharp accent</li>
+      <li><a href="https://www.warp.dev">warp.dev</a>: terminal output used as marketing proof</li>
+      <li><a href="https://vercel.com">vercel.com</a>: grid backgrounds and glow used sparingly</li>
+    </ul>
   </div>
 </section>
 
-<section class="board-section" aria-labelledby="palette-title">
-  <div class="wrap">
-    <h2 id="palette-title">Palette</h2>
-    <div class="swatches">
-      <figure class="swatch big" style="--c: var(--deep-water)"><div class="chip"></div><figcaption>Deep water<code>#0B2540 · text 14.6:1 · dark bands</code></figcaption></figure>
-      <figure class="swatch big" style="--c: var(--current)"><div class="chip"></div><figcaption>Current<code>#00707A · accent, buttons, links 5.5:1</code></figcaption></figure>
-      <figure class="swatch big" style="--c: var(--beacon)"><div class="chip"></div><figcaption>Beacon, the signature<code>#FFB547 · badges, status, highlights</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--mist)"><div class="chip"></div><figcaption>Mist<code>#F5F8FB · page</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--tide)"><div class="chip"></div><figcaption>Tide<code>#E8F1F4 · tinted panels</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--slate)"><div class="chip"></div><figcaption>Slate<code>#475A70 · muted 6.7:1</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--shallows)"><div class="chip"></div><figcaption>Shallows<code>#7FC8CF · decoration</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--beacon-ink)"><div class="chip"></div><figcaption>Beacon ink<code>#8A5300 · amber text 6.3:1</code></figcaption></figure>
-      <figure class="swatch" style="--c: var(--beacon-tint)"><div class="chip"></div><figcaption>Beacon tint<code>#FFF4E0 · highlight wash</code></figcaption></figure>
+<!-- ===================== B ===================== -->
+<section class="dir pacific" id="pacific" aria-labelledby="b-title">
+  <div class="inner">
+    <p class="kicker">Direction B</p>
+    <h2 id="b-title">Pacific Current</h2>
+    <p class="lede">Calm, accountable and corporate, with a Northwest edge. It's the safest choice for selling to larger companies and their finance and compliance people. It risks looking like every other IT vendor if the AI story isn't front and center in the copy.</p>
+    <ul class="words" aria-label="Mood words">
+      <li>calm</li><li>trustworthy</li><li>Northwest</li><li>clear numbers</li><li>enterprise ready</li>
+    </ul>
+
+    <h3>Hero sample</h3>
+    <div class="hero">
+      <p class="headline display">IT support that answers in seconds, not tickets.</p>
+      <p>Our AI technician starts on every issue the moment it's reported, and a named engineer owns your account. Prices are published, so you know the cost before we talk.</p>
+      <div class="actions">
+        <a class="btn" href="#pacific">See pricing</a>
+        <a class="btn secondary" href="#pacific">Get a proposal</a>
+      </div>
+      <p class="status">Median first response: 42 seconds</p>
     </div>
-    <p>Amber is never text on a light background. On light surfaces it's a fill with navy text on top (8.8:1), and for amber-colored words we use Beacon ink.</p>
-  </div>
-</section>
 
-<section class="board-section" aria-labelledby="type-title">
-  <div class="wrap">
-    <h2 id="type-title">Type</h2>
+    <h3>Palette</h3>
+    <div class="grid">
+      <figure class="swatch" style="--c:#F5F8FB"><div class="chip"></div><figcaption>Mist<code>#F5F8FB · page</code></figcaption></figure>
+      <figure class="swatch" style="--c:#0B2540"><div class="chip"></div><figcaption>Deep water<code>#0B2540 · text 14.6:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#475A70"><div class="chip"></div><figcaption>Slate<code>#475A70 · muted 6.7:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#00707A"><div class="chip"></div><figcaption>Current<code>#00707A · accent 5.8:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#7FC8CF"><div class="chip"></div><figcaption>Shallows<code>#7FC8CF · decorative only</code></figcaption></figure>
+      <figure class="swatch" style="--c:#FFB547"><div class="chip"></div><figcaption>Beacon<code>#FFB547 · on navy only, 8.8:1</code></figcaption></figure>
+    </div>
+
+    <h3>Type</h3>
     <div class="specimen">
-      <p class="kicker">Source Serif 4 headings · IBM Plex Sans body · IBM Plex Mono for the machine · weights 400 and 600</p>
-      <p class="display">Steady hands on every machine.</p>
-      <p>A serif headline reads as established and grown up, which helps when a CFO is comparing us with an MSP that has been around for 20 years. Plex Sans keeps body copy and tables plain and easy to scan. <strong>Semibold 600</strong> handles headings, labels and emphasis. Regular 400 does everything else.</p>
-      <p class="machine">ticket 4821 · finance-laptop-07 · fixed in 6m 12s</p>
+      <p class="meta">Source Serif 4 for headings · IBM Plex Sans for body · IBM Plex Mono for data</p>
+      <p class="big">Steady hands on every machine.</p>
+      <p>A serif headline reads as established and grown up, which helps when a CFO is comparing us with a 20-year-old MSP. Plex Sans keeps the body copy and tables plain and easy to scan. It was drawn for IBM, so it feels at home in procurement documents.</p>
+      <p class="mono">Complete plan · 200 users · $27,000 / month</p>
     </div>
-  </div>
-</section>
 
-<section class="board-section" aria-labelledby="tex-title">
-  <div class="wrap">
-    <h2 id="tex-title">Textures</h2>
-    <div class="textures">
-      <div><div class="texture tex-rings"></div><p class="texture-label">Tide rings, for the hero</p></div>
-      <div><div class="texture tex-depth"></div><p class="texture-label">Depth gradient, for section bands</p></div>
-      <div><div class="texture tex-rain"></div><p class="texture-label">Rain lines, for quiet panels</p></div>
-      <div><div class="texture tex-beacon"></div><p class="texture-label">Beacon on deep water, for the footer and fix log</p></div>
+    <h3>Textures</h3>
+    <div class="grid">
+      <div><div class="texture pa-tex-1"></div><p class="texture-label">Tide rings</p></div>
+      <div><div class="texture pa-tex-2"></div><p class="texture-label">Depth gradient</p></div>
+      <div><div class="texture pa-tex-3"></div><p class="texture-label">Rain lines</p></div>
     </div>
-  </div>
-</section>
 
-<section class="board-section" id="components" aria-labelledby="comp-title">
-  <div class="wrap">
-    <h2 id="comp-title">Signature pieces</h2>
-    <div class="pair-grid">
-      <article class="plan featured">
-        <p><span class="badge">Most popular</span></p>
-        <h3>Complete</h3>
+    <h3>Components</h3>
+    <div class="grid-2">
+      <div class="plan">
+        <span class="badge">Most popular</span>
+        <p class="name">Complete</p>
         <p class="price">$135 <small>/ user / month</small></p>
-        <p class="note">Placeholder price from the spec, not confirmed.</p>
+        <p class="note">Placeholder price from the earlier spec</p>
         <ul>
           <li>24/7 AI technician on every device</li>
           <li>Named account engineer</li>
           <li>Quarterly IT review</li>
         </ul>
-        <a class="btn" href="#components">Get a proposal</a>
-      </article>
-      <div class="stack" style="--stack-space: var(--space-m)">
-        <div class="fixlog-wrap">
-          <figure class="fixlog" aria-labelledby="board-log-cap">
-            <div class="bar"><span>ticket 4821 · finance-laptop-07</span><span class="ok">resolved</span></div>
-            <ol>
-              <li><span class="step">reported</span><span>Outlook won't open (Dana, Finance)</span></li>
-              <li><span class="step">checking</span><span>Outlook profile, add-ins, disk, last updates</span></li>
-              <li><span class="step">found</span><span>add-in "PDFSync 2.3" crashes on start, 14 times today</span></li>
-              <li><span class="step">plan</span><span>disable the add-in, repair Office, leave user files alone</span></li>
-              <li class="human"><span class="step">approval</span><span>on-call engineer Jo approved at 9:42</span></li>
-              <li class="done"><span class="step">fixed</span><span>Outlook opens in 3.1s · Dana notified · 6 min total</span></li>
-            </ol>
-            <figcaption id="board-log-cap">The fix log, our signature. Mono means the machine is talking. Amber marks where a person stepped in.</figcaption>
-          </figure>
-        </div>
-        <div class="field">
+        <a class="btn" href="#pacific">Get a proposal</a>
+      </div>
+      <div>
+        <figure class="term" aria-label="Example of the AI technician fixing a ticket">
+          <div class="bar">ticket 4821 · finance-laptop-07</div>
+<pre><span class="k">›</span> Outlook won't open, reported by Dana in Finance
+<span class="m">checking</span>  Outlook profile, add-ins, disk, last updates
+<span class="m">found</span>     add-in "PDFSync 2.3" crashes on start (14 times today)
+<span class="m">plan</span>      disable the add-in, repair Office, leave user files alone
+<span class="m">approval</span>  requested from on-call engineer · <span class="ok">approved</span>
+<span class="ok">fixed</span>     Outlook opens in 3.1s · Dana notified · 6 min total</pre>
+        </figure>
+        <div class="field" style="margin-top:1.5rem">
           <label for="b-email">Work email</label>
-          <input id="b-email" type="email" autocomplete="email">
+          <input id="b-email" type="email" autocomplete="email" placeholder="you@company.com">
           <span class="hint">We reply within one business day.</span>
         </div>
       </div>
     </div>
+
+    <h3>Sites with a similar feel</h3>
+    <ul class="refs">
+      <li><a href="https://stripe.com">stripe.com</a>: confident serif and sans pairing, numbers shown plainly</li>
+      <li><a href="https://mercury.com">mercury.com</a>: calm palette that still feels modern</li>
+      <li><a href="https://www.cloudflare.com/trust-hub/">cloudflare.com trust hub</a>: how a security page earns trust</li>
+    </ul>
   </div>
 </section>
 
-<section class="board-section" aria-labelledby="refs-title">
-  <div class="wrap">
-    <h2 id="refs-title">Sites with a similar feel</h2>
-    <p>Screenshots taken 2026-11-22 at 1440 by 840. They're here for feel only. We borrow ideas, not layouts, art or copy.</p>
-    <div class="refs">
-      <figure class="ref">
-        <img src="refs/gusto.jpg" width="864" height="504" alt="Gusto home page: a large serif headline, sans body text and buttons, over a product screenshot.">
-        <figcaption><a href="https://gusto.com">gusto.com</a><span>The serif-and-sans reference: serif headlines over plain sans body copy, selling payroll to the same size companies we sell to.</span></figcaption>
-      </figure>
-      <figure class="ref">
-        <img src="refs/mercury.jpg" width="864" height="504" alt="Mercury home page: a short sans headline and one email field over a calm misty landscape.">
-        <figcaption><a href="https://mercury.com">mercury.com</a><span>A calm, Northwest-feeling atmosphere for a money product. One clear action, nothing shouting.</span></figcaption>
-      </figure>
-      <figure class="ref">
-        <img src="refs/cloudflare-trust-hub.jpg" width="864" height="504" alt="Cloudflare Trust Hub: a plain headline, a short explanation and sections for privacy and compliance.">
-        <figcaption><a href="https://www.cloudflare.com/trust-hub/">cloudflare.com/trust-hub</a><span>How a security page earns trust: plain sections, policies and certifications listed openly.</span></figcaption>
-      </figure>
-      <figure class="ref">
-        <img src="refs/warp.jpg" width="864" height="504" alt="Warp home page: mono headline and a live status grid of tasks with a legend.">
-        <figcaption><a href="https://www.warp.dev">warp.dev</a><span>Where the mono rule comes from: machine output shown as proof, with live status and a legend. We use it for the fix log only, not the whole page.</span></figcaption>
-      </figure>
+<!-- ===================== C ===================== -->
+<section class="dir warm" id="warm" aria-labelledby="c-title">
+  <div class="inner">
+    <p class="kicker">Direction C</p>
+    <h2 id="c-title">Warm Circuit</h2>
+    <p class="lede">Friendly, plain-spoken and local, with copper wire as the electric idea. It makes AI feel helpful instead of scary, and it puts the people who approve the AI's work up front. It may read as too small-business for a 500-person company.</p>
+    <ul class="words" aria-label="Mood words">
+      <li>friendly</li><li>plain-spoken</li><li>humans in the loop</li><li>Portland made</li><li>copper</li>
+    </ul>
+
+    <h3>Hero sample</h3>
+    <div class="hero">
+      <p class="headline display">Computer help that actually fixes things.</p>
+      <p>Tell us what's wrong in plain English. Our AI technician gets to work on your machine right away, and a real person on our team checks anything that matters.</p>
+      <div class="actions">
+        <a class="btn" href="#warm">See pricing</a>
+        <a class="btn secondary" href="#warm">Get a proposal</a>
+      </div>
+      <p class="status">Fixed 9 out of 10 issues without a callback last month</p>
     </div>
+
+    <h3>Palette</h3>
+    <div class="grid">
+      <figure class="swatch" style="--c:#FBF7F0"><div class="chip"></div><figcaption>Paper<code>#FBF7F0 · page</code></figcaption></figure>
+      <figure class="swatch" style="--c:#F4E9DA"><div class="chip"></div><figcaption>Kraft<code>#F4E9DA · panels</code></figcaption></figure>
+      <figure class="swatch" style="--c:#1C1917"><div class="chip"></div><figcaption>Ink<code>#1C1917 · text 16.4:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#57534E"><div class="chip"></div><figcaption>Pencil<code>#57534E · muted 7.1:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#9A4318"><div class="chip"></div><figcaption>Copper<code>#9A4318 · accent 6.2:1</code></figcaption></figure>
+      <figure class="swatch" style="--c:#2F7D5B"><div class="chip"></div><figcaption>Patina<code>#2F7D5B · status 4.7:1</code></figcaption></figure>
+    </div>
+
+    <h3>Type</h3>
+    <div class="specimen">
+      <p class="meta">Bricolage Grotesque for headings · Atkinson Hyperlegible Next for body</p>
+      <p class="big">Less hold music. More fixed.</p>
+      <p>Bricolage has a hand-made warmth without being cute. Atkinson Hyperlegible was designed by the Braille Institute to be easy to read. That fits a company that wants to explain technology in plain words, and it helps with the accessibility statement too.</p>
+      <p class="mono">Ticket 4821 · fixed in 6 minutes · approved by Jo</p>
+    </div>
+
+    <h3>Textures</h3>
+    <div class="grid">
+      <div><div class="texture wc-tex-1"></div><p class="texture-label">Breadboard dots</p></div>
+      <div><div class="texture wc-tex-2"></div><p class="texture-label">Copper traces</p></div>
+      <div><div class="texture wc-tex-3"></div><p class="texture-label">Warm current</p></div>
+    </div>
+
+    <h3>Components</h3>
+    <div class="grid-2">
+      <div class="plan">
+        <span class="badge">Most popular</span>
+        <p class="name">Complete</p>
+        <p class="price">$135 <small>/ user / month</small></p>
+        <p class="note">Placeholder price from the earlier spec</p>
+        <ul>
+          <li>AI technician on every computer</li>
+          <li>A real person checks every big fix</li>
+          <li>Security and backup included</li>
+        </ul>
+        <a class="btn" href="#warm">Get a proposal</a>
+      </div>
+      <div>
+        <figure class="term" aria-label="Example of the AI technician fixing a ticket">
+          <div class="bar">ticket 4821 · finance-laptop-07</div>
+<pre><span class="k">›</span> Outlook won't open, reported by Dana in Finance
+<span class="m">checking</span>  Outlook profile, add-ins, disk, last updates
+<span class="m">found</span>     add-in "PDFSync 2.3" crashes on start (14 times today)
+<span class="m">plan</span>      disable the add-in, repair Office, leave user files alone
+<span class="m">approval</span>  requested from on-call engineer · <span class="ok">approved</span>
+<span class="ok">fixed</span>     Outlook opens in 3.1s · Dana notified · 6 min total</pre>
+        </figure>
+        <div class="field" style="margin-top:1.5rem">
+          <label for="c-email">Work email</label>
+          <input id="c-email" type="email" autocomplete="email" placeholder="you@company.com">
+          <span class="hint">We reply within one business day.</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Sites with a similar feel</h3>
+    <ul class="refs">
+      <li><a href="https://tailscale.com">tailscale.com</a>: a technical product explained in a warm, human voice</li>
+      <li><a href="https://basecamp.com">basecamp.com</a>: plain talk and strong opinions on the page</li>
+      <li><a href="https://www.mailchimp.com">mailchimp.com</a>: warm color and friendly type at business scale</li>
+    </ul>
   </div>
 </section>
+
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p>Numbers in the samples (fix times, machine counts, the $135 price) are made up for layout. None of them are claims yet.</p>
-  </div>
+<footer class="shell" id="decide">
+  <h1>What I need from you</h1>
+  <p>Pick a direction, or tell me which pieces to mix. A few things worth reacting to:</p>
+  <ul>
+    <li>Dark or light as the main look. Dark tells the AI story faster. Light is easier to sell to finance and compliance buyers.</li>
+    <li>How visible the AI should be. A shows the machine working. C puts the people approving the work first. B sits in between.</li>
+    <li>Whether the terminal "fix log" should be a signature element on the real site. I think it's our best proof, whichever direction we pick.</li>
+  </ul>
+  <p class="muted">Numbers in the samples (fix times, machine counts, the $135 price) are made up for layout. None of them are claims yet.</p>
 </footer>
 
 </body>
