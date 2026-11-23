@@ -1,9 +1,9 @@
 ---
 title: Home
-description: Managed IT services for Portland companies of 10 to 1,000 employees. Help desk, security, Microsoft 365 and more, from a local team.
+description: Your team has work to do. We'll handle the IT. Get Portland-based support, security, and Microsoft 365 management for one predictable monthly fee.
 hero:
   heading: IT that just works, so your team can too
-  lede: Tired of tickets that sit and invoices that surprise? Our Portland team runs your help desk, security, devices and Microsoft 365 for one predictable monthly fee.
+  lede: IT problems shouldn't run your workday. Our Portland team handles help desk support, security, devices, and Microsoft 365 so you can focus on your business. One predictable monthly fee.
   primary:
     label: Get a proposal
     url: /proposal/
